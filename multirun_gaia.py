@@ -2,23 +2,27 @@ import shutil
 from pathlib import Path
 from train_gaia import main
 
+
 def multirun(experiment_name=None):
-  root_config = Path('/content/drive/Shareddrives/Learning_Deep/project_954437307_066610346/configurations/config_loc')
-  config_finish = root_config.joinpath('config_finish')
-  config_start = root_config.joinpath('config_start')
-  config_fail = root_config.joinpath('config_fail')
+    root_config = Path('/media/sam/data/work/stars//configurations/config_loc')
+    config_finish = root_config.joinpath('config_finish')
+    config_start = root_config.joinpath('config_start')
+    config_fail = root_config.joinpath('config_fail')
 
-  for config_loc in config_start.iterdir():
+    for config_loc in config_start.iterdir():
 
-    filename = config_loc.name
+        filename = config_loc.name
 
-    try:
-      main(config_loc, experiment_name=experiment_name)
-      shutil.move(config_loc, config_finish.joinpath(filename))
-      
-    except:
-      print('*********************************')
-      print(f"main() failed on {config_loc.name}")
-      shutil.move(config_loc, config_fail.joinpath(filename))
-      print('*********************************')
+        # try:
+        main(config_loc, experiment_name=experiment_name)
+        shutil.move(config_loc, config_finish.joinpath(filename))
 
+        # except:
+        #     print('*********************************')
+        #     print(f"main() failed on {config_loc.name}")
+        #     shutil.move(config_loc, config_fail.joinpath(filename))
+        #     print('*********************************')
+
+
+if __name__ == "__main__":
+    multirun(experiment_name="binary_stars_08feb_2")
