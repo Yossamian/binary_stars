@@ -1,1 +1,1 @@
-from .stars import *
+from .stars_dataset import *
