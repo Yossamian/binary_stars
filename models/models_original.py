@@ -5,9 +5,11 @@ from torch.nn import TransformerEncoder, TransformerEncoderLayer
 import math
 from torch import nn, Tensor
 
+
 ################################################################################
 ############################## MLP Models ######################################
 ################################################################################
+
 
 ############### Initial MLP Model - Optuna #####################################
 class MLP(nn.Module):
@@ -42,6 +44,7 @@ class MLP(nn.Module):
         # X = self.act3(X)
         return X
 
+
 ############### Final MLP Model - using layer sizes from Optuna ################
 class MLP_final(nn.Module):
     # define model elements
@@ -74,6 +77,7 @@ class MLP_final(nn.Module):
         X = self.hidden3(X)
         # X = self.act3(X)
         return X
+
 
 ################################################################################
 ################  Transformer-based Model ######################################
@@ -155,6 +159,7 @@ class xformer(nn.Module):
 
         return out.squeeze()
 
+
 class PositionalEncoding(nn.Module):
 
     def __init__(self, d_model: int, dropout: float = 0.1, max_len: int = 5000):
@@ -175,6 +180,7 @@ class PositionalEncoding(nn.Module):
         """
         x = x + self.pe[:x.size(0)]
         return self.dropout(x)
+
 
 class TransformerModel(nn.Module):
 
@@ -220,6 +226,7 @@ class TransformerModel(nn.Module):
         output = self.flat(output.transpose(0,1))
         output =  self.hidden3(output)
         return output
+
 
 
 ################################################################################
@@ -389,14 +396,14 @@ class ConvolutionalNet(nn.Module):
 
         # Convolutional layers
         self.conv1 = nn.Conv1d(1, 16, 5, stride=1, padding=2)
-        self.conv2 = nn.Conv1d(16, 32, 5, stride=5, padding=2)
-        self.conv3 = nn.Conv1d(32, 64, 5, stride=5, padding=2)
-        self.conv4= nn.Conv1d(64, 64, 5, stride=5, padding=2)
-        self.conv_final= nn.Conv1d(64, 5, 1, stride=1, padding=0)
+        self.conv2 = nn.Conv1d(16, 32, 3, stride=3, padding=2)
+        self.conv3 = nn.Conv1d(32, 64, 3, stride=3, padding=2)
+        self.conv4= nn.Conv1d(64, 64, 3, stride=1, padding=2)
+        self.conv_final= nn.Conv1d(64, 3, 1, stride=1, padding=0)
 
         # Linear layers
-        self.linear1 = nn.Linear(410,100)
-        self.linear2 = nn.Linear(100, n_params)
+        self.linear1 = nn.Linear(312, 80)
+        self.linear2 = nn.Linear(80, n_params)
         
     # forward propagate input
     def forward(self, X):
