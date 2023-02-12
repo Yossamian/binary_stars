@@ -22,8 +22,13 @@ def main(config_loc, experiment_name=None):
     for key, value in parameters.items():
         print(key, value)
 
+    if parameters['type'] == "all":
+        num_outputs = 12
+    else:
+        num_outputs = 2
+
     # Load model
-    model = getattr(models, parameters['model'])()
+    model = getattr(models, parameters['model'])(num_outputs=num_outputs)
     print('MODEL ARCHITECTURE:')
     print(model)
 

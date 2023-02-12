@@ -19,10 +19,27 @@ def explore():
 class GaiaDataset(Dataset):
 
     # load the dataset
-    def __init__(self, paths):
+    def __init__(self, paths, target_param):
 
         labels = ['list_vsini_1', 'list_vsini_2', 'list_m_1', 'list_m_2', 'list_a_1', 'list_a_2',
                   'list_t_1', 'list_t_2', 'list_log_g_1', 'list_log_g_2', 'list_l_1', 'list_l_2']
+
+        if target_param == "all":
+            labels = labels
+        elif target_param == "v_sin_i":
+            labels = labels[:2]
+        elif target_param == "metal":
+            labels = labels[2:4]
+        elif target_param == "alpha":
+            labels = labels[4:6]
+        elif target_param == "temp":
+            labels = labels[6:8]
+        elif target_param == "log_g":
+            labels = labels[8:10]
+        elif target_param == "lumin":
+            labels = labels[10:12]
+        else:
+            raise ValueError("Incorrect target_param selection for creation of Gaia Dataset")
 
         root_dir = Path("/media/sam/data/work/stars/gaia")
 
@@ -51,14 +68,14 @@ class GaiaDataset(Dataset):
         total_spectra = np.row_stack(list_total_spectra)
         total_labels = np.row_stack(list_total_labels)
 
-        print(f"COMPLETE dataset: {total_spectra.shape} spectra array, {total_labels.shape} label array")
+        print(f"COMPLETE {target_param} dataset: {total_spectra.shape} spectra array, {total_labels.shape} label array")
 
         # ensure input data is floats
         self.spectra = torch.from_numpy(total_spectra).float()
 
         # For new order:
         new_order = []
-        for i in range(12):
+        for i in range(len(labels)):
             if i % 2 == 0:
                 new_order.append(i + 1)
             else:
@@ -131,4 +148,13 @@ class StarDataset_original(Dataset):
 
 
 if __name__ == "__main__":
-    dataset = GaiaDataset([0, 1, 2, 3])
+    opts = ['all', 'v_sin_i', 'metal', 'alpha', 'temp', 'log_g', 'lumin', 'none']
+    for opt in opts:
+        dataset = GaiaDataset(paths=[0, 1, 2, 3], target_param=opt)
+        a = dataset.spectra
+        lab = dataset.labels
+        print(f'************{opt}*************')
+        print(a.shape, lab.shape)
+        print(torch.min(lab))
+        print(torch.max(lab))
+        print()

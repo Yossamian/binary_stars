@@ -55,7 +55,7 @@ class InceptionBlock(nn.Module):
 
 
 class InceptionNet(nn.Module):
-    def __init__(self):
+    def __init__(self, num_outputs=12):
         super().__init__()
         self.name = "inception"
         self.conv1 = nn.Conv1d(1, 32, 7, stride=2, padding=3)
@@ -85,7 +85,7 @@ class InceptionNet(nn.Module):
 
         # self.linear1 = nn.Linear(40448,400)
         self.linear1 = nn.Linear(3328, 400)
-        self.linear2 = nn.Linear(400, 12)
+        self.linear2 = nn.Linear(400, num_outputs)
 
     def forward(self, X):
         X = torch.unsqueeze(X, 1)

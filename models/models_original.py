@@ -389,7 +389,7 @@ class AttentionBlockModel(nn.Module):
 class ConvolutionalNet(nn.Module):
 
     # define model elements
-    def __init__(self, n_params=12):
+    def __init__(self, num_outputs=12):
         super().__init__()
 
         self.name = "std_convolutional"
@@ -403,7 +403,7 @@ class ConvolutionalNet(nn.Module):
 
         # Linear layers
         self.linear1 = nn.Linear(312, 80)
-        self.linear2 = nn.Linear(80, n_params)
+        self.linear2 = nn.Linear(80, num_outputs)
         
     # forward propagate input
     def forward(self, X):

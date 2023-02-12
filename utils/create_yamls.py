@@ -64,7 +64,8 @@ def multi_yaml():
                       'wd': [0.0001],
                       'epochs': [100],
                       'early_stopping': [15],
-                      'sets_between_eval': [3]
+                      'sets_between_eval': [3],
+                      'type': ['all', 'v_sin_i', 'metal', 'alpha', 'temp', 'log_g', 'lumin']
                       }
 
     for combo in product(*all_parameters.values()):

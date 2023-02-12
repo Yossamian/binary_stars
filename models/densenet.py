@@ -109,7 +109,7 @@ class DenseBlock(nn.ModuleDict):
 
 class DenseNet(nn.Module):
     def __init__(self, growth_rate=20, block_config=(3, 6, 9, 12), num_init_features=12, bn_size=4, dropout=0,
-                 output=12):
+                 num_outputs=12):
         super().__init__()
 
         self.features = nn.Sequential(
@@ -142,7 +142,7 @@ class DenseNet(nn.Module):
                 num_features = num_features // 2
 
         self.final_pool = nn.AdaptiveAvgPool1d(output_size=1)
-        self.linear_final = nn.Linear(num_features, output)
+        self.linear_final = nn.Linear(num_features, num_outputs)
 
         # Official init from torch repo.
         for m in self.modules():
