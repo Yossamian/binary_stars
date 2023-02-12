@@ -22,7 +22,7 @@ def main(config_loc, experiment_name=None):
     for key, value in parameters.items():
         print(key, value)
 
-    if parameters['type'] == "all":
+    if parameters['target_param'] == 12:
         num_outputs = 12
     else:
         num_outputs = 2
@@ -35,9 +35,9 @@ def main(config_loc, experiment_name=None):
     # Create datasets and dataloaders with given # of path files
     # num_sets = 2
     # paths = list(range(num_sets))
-    paths = [0, 3, 6, 9]
+    paths = [0]
     num_sets = len(paths)
-    full_data = GaiaDataset(paths)
+    full_data = GaiaDataset(paths, target_param=parameters['target_param'])
     train_len = int(len(full_data) * 0.7)
     val_len = len(full_data) - train_len
     train_data, val_data = random_split(full_data, [train_len, val_len], generator=torch.Generator().manual_seed(42))

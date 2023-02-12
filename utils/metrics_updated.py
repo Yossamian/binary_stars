@@ -1,6 +1,7 @@
 import torchmetrics as tm
 from comet_ml import Experiment
 import torch
+import torch.nn as nn
 
 
 def all_metrics(predictions, targets):
@@ -186,6 +187,51 @@ def MASE(predictions, targets):
 
     return mase, correct_target_order
 
+
+class Torch_MSE(nn.Module):
+    def __init__(self, weight=None, ignore_index=-100, reduction='mean'):
+        super(MSE, self).__init__()
+        self.MSE = nn.MSELoss()
+
+    def forward(self, output, target):
+        loss = self.MSE(output, target)
+        return loss
+
+
+def MSE(predictions, targets):
+    """
+    Mean Absolute Error
+    https://en.wikipedia.org/wiki/Mean_absolute_error
+    Inputs:
+    predictions: a tensor of shape (B, L), where B is batch size and L is label size
+    targets: a tensor of shape (B, L, 2)
+    epsilon = value to ensure that we do not divide by zero
+    Added epsilon to denominator to ensure no division by zero
+    for_MASE = this will change the way thte result is returned
+    """
+    # Absolute error taken on a per label basis
+    predictions_unsqueezed = predictions.unsqueeze(dim=-1)
+    differences_squared = (targets - predictions_unsqueezed)**2
+
+    # Sum all of the label absolute errors - need to do this to measure which order is correct
+    # Result is a tensor of shape (B, 2), where 2 is the two different orders
+    sum_of_differences = torch.sum(differences_squared, axis=1)
+
+    # Remove axis=1 of size 2, by taking min, which is the correct order of the targets
+    # Returns minimums and indices, both 1-d tensors of length B
+    # Minimum is the total label error for each batch
+    minimum, indices = torch.min(sum_of_differences, axis=-1)
+
+    # Get the targets that were actually used to calculate the MAPE
+    correct_target_order = [targets[r, :, i] for r, i in enumerate(indices)]
+    correct_target_order = torch.vstack(correct_target_order)
+
+    # Now we can actually calculate the MAE, across the batch
+    # Result is a vector of length L, with MAE for each label
+    differences_squared = (correct_target_order - predictions)**2
+    mse = torch.mean(differences_squared)
+
+    return mse, correct_target_order
 
 """
 def RangeLoss(tm.Metric):

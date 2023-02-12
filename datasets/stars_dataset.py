@@ -26,7 +26,7 @@ class GaiaDataset(Dataset):
 
         if target_param == "all":
             labels = labels
-        elif target_param == "v_sin_i":
+        elif target_param == "vsini":
             labels = labels[:2]
         elif target_param == "metal":
             labels = labels[2:4]

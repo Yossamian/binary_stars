@@ -59,13 +59,13 @@ def multi_yaml():
 
     all_parameters = {'model': ['InceptionNet'],  # ['DenseNet', 'ConvolutionalNet', 'InceptionNet'],
                       'optimizer': ['Adam'],
-                      'loss': ['MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'],
+                      'loss': ['MSE'],  #['MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'],
                       'lr': [.001],
                       'wd': [0.0001],
                       'epochs': [100],
                       'early_stopping': [15],
                       'sets_between_eval': [3],
-                      'type': ['all', 'v_sin_i', 'metal', 'alpha', 'temp', 'log_g', 'lumin']
+                      'target_param': ['vsini', 'metal', 'alpha', 'temp', 'log_g', 'lumin']
                       }
 
     for combo in product(*all_parameters.values()):
