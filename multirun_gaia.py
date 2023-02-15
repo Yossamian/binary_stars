@@ -1,6 +1,7 @@
 import shutil
 from pathlib import Path
 from train_gaia import main
+import yaml
 
 
 def multirun(experiment_name=None):
@@ -11,10 +12,14 @@ def multirun(experiment_name=None):
 
     for config_loc in config_start.iterdir():
 
+        # Read in parameters
+        with open(config_loc, 'r') as f:
+            parameters = yaml.safe_load(f)
+
         filename = config_loc.name
 
         # try:
-        main(config_loc, experiment_name=experiment_name)
+        main(config_loc, experiment_name=f'{experiment_name}_{parameters["target_param"]}')
         shutil.move(config_loc, config_finish.joinpath(filename))
 
         # except:
@@ -25,4 +30,4 @@ def multirun(experiment_name=None):
 
 
 if __name__ == "__main__":
-    multirun(experiment_name="binary_stars_08feb_2")
+    multirun(experiment_name="binary_stars_12_feb")

@@ -35,7 +35,7 @@ def main(config_loc, experiment_name=None):
     # Create datasets and dataloaders with given # of path files
     # num_sets = 2
     # paths = list(range(num_sets))
-    paths = [0]
+    paths = [0, 3, 6, 9]
     num_sets = len(paths)
     full_data = GaiaDataset(paths, target_param=parameters['target_param'])
     train_len = int(len(full_data) * 0.7)

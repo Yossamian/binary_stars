@@ -5,15 +5,10 @@ import torch
 
 class StarMetrics(tm.MetricCollection):
     def __init__(self, range_value):
-        metrics_kwargs = {
-            'num_classes': 7,
-            'average': None,
-            'ignore_index': None,
-            'mdmc_average': 'global'
-        }
         metrics = [tm.MeanAbsolutePercentageError(),
+                   tm.MeanAbsoluteError,
+                   tm.SymmetricMeanAbsolutePercentageError(),
                    tm.MeanSquaredError(),
-                   tm.CosineSimilarity(),
                    RangeLoss(range_value)]
         super().__init__(metrics)
 
