@@ -6,7 +6,7 @@ import torch
 class StarMetrics(tm.MetricCollection):
     def __init__(self, range_value):
         metrics = [tm.MeanAbsolutePercentageError(),
-                   tm.MeanAbsoluteError,
+                   tm.MeanAbsoluteError(),
                    tm.SymmetricMeanAbsolutePercentageError(),
                    tm.MeanSquaredError(),
                    RangeLoss(range_value)]

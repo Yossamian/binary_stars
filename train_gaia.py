@@ -22,7 +22,7 @@ def main(config_loc, experiment_name=None):
     for key, value in parameters.items():
         print(key, value)
 
-    if parameters['target_param'] == 12:
+    if parameters['target_param'] == "all":
         num_outputs = 12
     else:
         num_outputs = 2
