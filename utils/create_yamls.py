@@ -2,22 +2,22 @@ import yaml
 from pathlib import Path
 from itertools import product
 from datetime import date
+from random import randint
 
 
 def create_yaml(parameters, folder):
 
     model = parameters['model']
     loss = parameters['loss']
-    opt = parameters['optimizer']
-    lr = parameters['lr']
+    target = parameters['target_param']
 
     today = date.today().strftime('%Y_%m_%d')
-    name = f'{model}_{loss}_{today}'
+    name = f'{model}_{target}_{loss}_{today}_{randint(0,3000)}'
     parameters['name'] = name
 
     file_name = folder.joinpath(f'{name}.yaml')
 
-    file_name = file_check(file_name)
+    # file_name = file_check(file_name)
 
     with open(file_name, 'w') as f:
         yaml.dump(parameters, f)
@@ -57,15 +57,17 @@ def multi_yaml():
     config_finish = config_loc.joinpath('config_finish')
     folder_check(config_loc, config_start, config_finish)
 
-    all_parameters = {'model': ['InceptionNet'],  # ['DenseNet', 'ConvolutionalNet', 'InceptionNet'],
+    all_parameters = {'model': ['InceptionMultiNet'],  # ['DenseNet', 'ConvolutionalNet', 'InceptionNet'],
                       'optimizer': ['Adam'],
-                      'loss': ['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'],
+                      'loss': ['MASE'],   #['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'],
                       'lr': [.001],
                       'wd': [0.0001],
-                      'epochs': [100],
+                      'epochs': [500],
                       'early_stopping': [15],
                       'sets_between_eval': [3],
-                      'target_param': ['all']
+                      'optimizer_step': [30],
+                      'optimizer_gamma': [0.7],
+                      'target_param': ['all']  #['vsini', 'metal', 'alpha', 'temp', 'log_g', 'lumin']
                       }
 
     for combo in product(*all_parameters.values()):

@@ -19,7 +19,7 @@ def multirun(experiment_name=None):
         filename = config_loc.name
 
         # try:
-        main(config_loc, experiment_name=f'{experiment_name}_{parameters["target_param"]}')
+        main(config_loc, experiment_name=f'{experiment_name}')
         shutil.move(config_loc, config_finish.joinpath(filename))
 
         # except:
@@ -30,4 +30,4 @@ def multirun(experiment_name=None):
 
 
 if __name__ == "__main__":
-    multirun(experiment_name="binary_stars_12_feb_full")
+    multirun(experiment_name="binary_stars_21_feb")

@@ -11,6 +11,7 @@ from contextlib import nullcontext
 import utils.metrics
 from utils.metrics_updated import MAPE_adjusted, SMAPE_adjusted, MASE, all_metrics
 import utils.metrics_updated
+from torch.optim.lr_scheduler import StepLR
 
 
 # comet_ml.config.save(api_key="8EKfM7gNRhoWg9I2sQz6rcHls")
@@ -35,6 +36,7 @@ class Trainer(object):
         self.state_dict_folder = self.folder.joinpath('state_dicts')
         self.sample_output_folder = self.folder.joinpath('sample_outputs')
         check_exists(self.folder, self.state_dict_folder, self.sample_output_folder)
+        torch.save(parameters, self.folder.joinpath(f'parameters.pt'))
 
         # Model Parameters
         self.model = model.to(self.device)
@@ -43,6 +45,7 @@ class Trainer(object):
         lr = parameters['lr']
         wd = parameters['wd']
         self.optimizer = getattr(torch.optim, parameters['optimizer'])(model.parameters(), lr=lr, weight_decay=wd)
+        self.scheduler = StepLR(self.optimizer, step_size=parameters['optimizer_step'], gamma=parameters['optimizer_gamma'])
 
         # Loss function
         self.loss_func = getattr(utils.metrics_updated, parameters['loss'])
@@ -95,6 +98,8 @@ class Trainer(object):
         for epoch in range(self.epochs):
 
             train_batch_loss = self._train_one_epoch().item()
+            # print("LR: ", self.optimizer.param_groups[0]['lr'])
+            self.scheduler.step()
             print(f"Epoch {epoch} training loss: {train_batch_loss}")
 
             if epoch % self.sets_between_eval == 0:
@@ -272,7 +277,8 @@ class Trainer(object):
             df = pd.DataFrame(table, columns=self.output_labels, index=['predicted', 'actual'])
             csv_path = self.sample_output_folder.joinpath(f'epoch_{epoch}_sample_{i}.csv')
             df.to_csv(csv_path)
-            self.experiment.log_table(csv_path, tabular_data=table, headers=self.output_labels)
+            if self.comet:
+                self.experiment.log_table(csv_path, tabular_data=table, headers=self.output_labels)
             print(df)
 
     def create_output_labels(self):
