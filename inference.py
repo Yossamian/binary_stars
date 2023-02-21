@@ -1,13 +1,8 @@
 import torch
 from torch.utils.data import random_split, DataLoader
-from trainer_gaia import Trainer
-import torch.nn as nn
-import torch.nn.functional as F
 from datasets import GaiaDataset, split_dataset
 import utils
-# from models.models_original import ConvolutionalNet
 import models
-import yaml
 from pathlib import Path
 from comet_ml import Experiment
 from contextlib import nullcontext
@@ -16,13 +11,8 @@ import pandas as pd
 import numpy as np
 
 
-def main(config_loc):
-
-    print(f'Running main() for {config_loc.name}')
-
-    # Read in parameters
-    with open(config_loc, 'r') as f:
-        parameters = yaml.safe_load(f)
+def main(name):
+    model_state_dict, parameters = load_model(name)
 
     print('PARAMETERS:')
     for key, value in parameters.items():
@@ -35,6 +25,7 @@ def main(config_loc):
 
     # Load model
     model = getattr(models, parameters['model'])(num_outputs=num_outputs)
+    model.load_state_dict(model_state_dict)
     print('MODEL ARCHITECTURE:')
     print(model)
 
@@ -43,26 +34,32 @@ def main(config_loc):
     # paths = list(range(num_sets))
     paths = list(range(13))
     num_sets = len(paths)
-    train_data, val_data, test_data = split_dataset(train=0.8, val=0.1, target_param=parameters['target_param'], paths=paths)
-    print(f'Dataset created with {len(train_data)} training examples, {len(val_data)} val examples, and {len(test_data)} test examples')
+    train_data, val_data, test_data = split_dataset(train=0.8, val=0.1, target_param=parameters['target_param'],
+                                                    paths=paths)
+    print(
+        f'Dataset created with {len(train_data)} training examples, {len(val_data)} val examples, and {len(test_data)} test examples')
 
     # Create Dataloaders
     test_loader = DataLoader(test_data, shuffle=False, batch_size=256)
 
-    trainer = Trainer(
+    inference = InferenceEngine(
         model=model,
         parameters=parameters,
-        num_sets=num_sets,
         test_loader=test_loader,
     )
 
-    trainer.train()
+    inference.infer()
 
 
 def load_model(experiment_name):
-    state_dict_path = Path(f'/media/sam/data/work/stars/configurations/saved_models/{experiment_name}/state_dicts/best_model.pt')
-    yaml_path = Path(f'/media/sam/data/work/stars/configurations/config_loc/config_finish/{experiment_name}.yaml)
-    best_state_dict = folder.joinpath('state_dicts/best_model.pt')
+    folder = Path(f'/media/sam/data/work/stars/configurations/saved_models/{experiment_name}')
+    # state_dict_path = Path(f'/media/sam/data/work/stars/configurations/saved_models/{experiment_name}/state_dicts/best_model.pt')
+    state_dict_path = folder.joinpath('state_dicts/best_model.pt')
+    parameters_path = folder.joinpath('parameters.pt')
+    state_dict = torch.load(state_dict_path)
+    params = torch.load(parameters_path)
+
+    return state_dict, params
 
 
 class InferenceEngine(object):
@@ -77,10 +74,19 @@ class InferenceEngine(object):
         self.model = model.to(self.device)
         self.test_loader = test_loader
 
+        self.loss_func = getattr(utils.metrics_updated, parameters['loss'])
+        self.torch_MSE = torch.nn.MSELoss()
+
         # Label parameters
         self.target_param = parameters["target_param"]
         self.output_labels, self.param_labels = self.create_output_labels()
         dict_denom = self.create_dict_denom()
+
+        #Output folder
+        self.root_dir = Path('/media/sam/data/work/stars/configurations')
+        self.folder = self.root_dir.joinpath(f'saved_models/{parameters["name"]}')
+        self.sample_output_folder = self.folder.joinpath('sample_outputs/inference_outputs')
+        check_exists(self.folder, self.sample_output_folder)
 
         # METRICS
         self.metrics = {}
@@ -114,7 +120,8 @@ class InferenceEngine(object):
                     inputs = inputs.to(self.device)
                     targets = targets.to(self.device)
                     predictions = self.model(inputs)
-                    loss, target_correct = self.loss_func(predictions, targets)  # Loss function, and determine best target to evaluate for
+                    loss, target_correct = self.loss_func(predictions,
+                                                          targets)  # Loss function, and determine best target to evaluate for
                     total_loss += loss
 
                     ######### test mse
@@ -138,7 +145,7 @@ class InferenceEngine(object):
                     ### Print a certain number of output samples for the val set
                     if not printed:
                         print("SAMPLE MODEL OUTPUTS FROM VAL SET:")
-                        self.create_sample_outputs(predictions, target_correct, number=3)
+                        self.create_sample_outputs(predictions, target_correct, number=100)
                         printed = True
 
                 epoch_loss = total_loss / (j + 1)
@@ -211,17 +218,34 @@ class InferenceEngine(object):
 
         return dict_denom
 
-    def create_sample_outputs(self, predictions, targets, number=20):
+    def create_sample_outputs(self, predictions, targets, number=50):
         # Prints sample outputs of all
         pd.set_option('display.max_columns', None)
-
+        table = []
+        indices = []
         for i in range(number):
             sample_prediction = np.round(predictions[i].cpu().numpy(), decimals=3)
             sample_target = np.round(targets[i].cpu().numpy(), decimals=3)
-            table = [sample_prediction, sample_target]
-            df = pd.DataFrame(table, columns=self.output_labels, index=['predicted', 'actual'])
-            csv_path = self.sample_output_folder.joinpath(f'sample_{i}.csv')
-            df.to_csv(csv_path)
-            if self.comet:
-                self.experiment.log_table(csv_path, tabular_data=table, headers=self.output_labels)
-            print(df)
+            table.append(sample_prediction)
+            table.append(sample_target)
+            indices.append(f'prediction {i}')
+            indices.append(f'target {i}')
+
+
+        df = pd.DataFrame(table, columns=self.output_labels, index=indices)
+        csv_path = self.sample_output_folder.joinpath(f'target_outputs_sample.csv')
+        df.to_csv(csv_path)
+        if self.comet:
+            self.experiment.log_table(csv_path, tabular_data=table, headers=self.output_labels)
+        print(df)
+
+
+def check_exists(*folders):
+    for folder in folders:
+        if not folder.exists():
+            folder.mkdir()
+
+
+if __name__ == "__main__":
+    name = 'InceptionMultiNet_all_MASE_2023_02_21_1563'
+    main(name)
