@@ -22,11 +22,11 @@ class InceptionBlock(nn.Module):
 
         # 3-k convs
         self.dimred3 = nn.Conv1d(in_channels, three_dim_red, kernel_size=1, stride=1)
-        self.conv3 = nn.Conv1d(in_channels, out_channels_3, kernel_size=3, stride=1, padding=1)
+        self.conv3 = nn.Conv1d(three_dim_red, out_channels_3, kernel_size=3, stride=1, padding=1)
 
         # 5-k convs
         self.dimred5 = nn.Conv1d(in_channels, five_dim_red, kernel_size=1, stride=1)
-        self.conv5 = nn.Conv1d(in_channels, out_channels_5, kernel_size=5, stride=1, padding=2)
+        self.conv5 = nn.Conv1d(five_dim_red, out_channels_5, kernel_size=5, stride=1, padding=2)
 
         # max pool
         self.maxpool = nn.MaxPool1d(3, stride=1, padding=1)
@@ -37,11 +37,11 @@ class InceptionBlock(nn.Module):
         # print('1d shape', one_d.shape)
 
         three_d = F.relu(self.dimred3(X))
-        three_d = F.relu(self.conv3(X))
+        three_d = F.relu(self.conv3(three_d))
         # print('3d shape', three_d.shape)
 
         five_d = F.relu(self.dimred5(X))
-        five_d = F.relu(self.conv5(X))
+        five_d = F.relu(self.conv5(five_d))
         # print('5d shape', five_d.shape)
 
         max_d = F.relu(self.maxpool(X))
