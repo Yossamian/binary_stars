@@ -138,6 +138,7 @@ class Trainer(object):
                 total_smape = 0
                 total_mae = 0
                 total_torch_mse = 0
+                num_samples = 0
                 for j, (inputs, targets) in enumerate(self.val_loader):
 
                     inputs = inputs.to(self.device)
@@ -145,7 +146,7 @@ class Trainer(object):
 
                     predictions = self.model(inputs)
                     loss, target_correct = self.loss_func(predictions, targets)  # Loss function, and determine best target to evaluate for
-                    total_loss += loss
+                    total_loss += (loss * inputs.shape[0])
 
                     ######### test mae
                     l1_loss = self.torch_MSE(predictions, target_correct)
@@ -153,10 +154,11 @@ class Trainer(object):
 
 
                     batch_mape, batch_smape, batch_mae, batch_mase = all_metrics(predictions, targets)
-                    total_mape += batch_mape
-                    total_mase += batch_mase
-                    total_smape += batch_smape
-                    total_mae += batch_mae
+                    total_mape += (batch_mape * inputs.shape[0])
+                    total_mase += (batch_mase * inputs.shape[0])
+                    total_smape += (batch_smape * inputs.shape[0])
+                    total_mae += (batch_mae * inputs.shape[0])
+                    num_samples += inputs.shape[0]
 
                     # This updates our torchmetrics losses, each batch
                     i = 0
@@ -172,12 +174,12 @@ class Trainer(object):
                         self.create_sample_outputs(predictions, target_correct, epoch, number=3)
                         printed = True
 
-                epoch_loss = total_loss / (j + 1)
-                epoch_smape = total_smape / (j + 1)
-                epoch_mape = total_mape / (j + 1)
-                epoch_mase = total_mase / (j + 1)
-                epoch_mae = total_mae / (j + 1)
-                epoch_torch_mse = total_torch_mse / (j + 1)
+                epoch_loss = total_loss / num_samples
+                epoch_smape = total_smape / num_samples
+                epoch_mape = total_mape / num_samples
+                epoch_mase = total_mase / num_samples
+                epoch_mae = total_mae / num_samples
+                epoch_torch_mse = total_torch_mse / (j+1)
 
                 print("Val SMAPE: ", epoch_smape.item())
                 print("Val MAPE: ", epoch_mape.item())
@@ -189,8 +191,10 @@ class Trainer(object):
                 for label in self.param_labels:
                     label_losses = self.metrics[label].compute()
                     total_range_loss += label_losses['RangeLoss']
+                    print(f"{label} val losses: {label_losses}")
                     if self.comet:
                         self.comet_log_torchmetrics(label, label_losses)
+                    self.metrics[label].reset()
 
                 print("Val Range Loss: ", total_range_loss.item())
 

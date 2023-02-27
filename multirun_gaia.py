@@ -30,4 +30,4 @@ def multirun(experiment_name=None):
 
 
 if __name__ == "__main__":
-    multirun(experiment_name="binary_stars_21_feb")
+    multirun(experiment_name="vsini_experiments")
