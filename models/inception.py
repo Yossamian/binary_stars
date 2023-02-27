@@ -58,12 +58,13 @@ class InceptionNet(nn.Module):
     def __init__(self, num_outputs=12):
         super().__init__()
         self.name = "inception"
-        self.conv1 = nn.Conv1d(1, 32, 7, stride=2, padding=3)
-        self.max1 = nn.MaxPool1d(3, stride=2, padding=1)
-        self.conv2 = nn.Conv1d(32, 32, 7, stride=2, padding=3)
-        self.max2 = nn.MaxPool1d(3, stride=2, padding=1)
+        self.conv1 = nn.Conv1d(1, 32, 3, stride=2, padding=3)
+        # self.max1 = nn.MaxPool1d(kernel_size=3, stride=2, padding=1)
+        self.conv2 = nn.Conv1d(32, 32, 3, stride=1, padding=1)
+        self.conv3 = nn.Conv1d(32, 64, 3, stride=1, padding=1)
+        self.max = nn.MaxPool1d(3, stride=2, padding=1)
 
-        self.incept1 = InceptionBlock(in_channels=32,
+        self.incept1 = InceptionBlock(in_channels=64,
                                       out_channels_1=64,
                                       out_channels_3=128,
                                       out_channels_5=32,
@@ -71,7 +72,7 @@ class InceptionNet(nn.Module):
                                       three_dim_red=96,
                                       five_dim_red=16)
 
-        self.max3 = nn.MaxPool1d(3, stride=2, padding=1)
+        self.max1 = nn.MaxPool1d(3, stride=2, padding=1)
 
         self.incept2 = InceptionBlock(in_channels=256,
                                       out_channels_1=64,
@@ -81,6 +82,27 @@ class InceptionNet(nn.Module):
                                       three_dim_red=96,
                                       five_dim_red=16)
 
+        self.max2 = nn.MaxPool1d(3, stride=2, padding=1)
+
+        self.incept3 = InceptionBlock(in_channels=256,
+                                      out_channels_1=64,
+                                      out_channels_3=128,
+                                      out_channels_5=32,
+                                      out_channels_max=32,
+                                      three_dim_red=96,
+                                      five_dim_red=16)
+
+        self.max3 = nn.MaxPool1d(3, stride=2, padding=1)
+
+        self.incept4 = InceptionBlock(in_channels=256,
+                                      out_channels_1=64,
+                                      out_channels_3=128,
+                                      out_channels_5=32,
+                                      out_channels_max=32,
+                                      three_dim_red=96,
+                                      five_dim_red=16)
+
+
         self.avg_pool = nn.AvgPool1d(5, stride=2)
 
         # self.linear1 = nn.Linear(40448,400)
@@ -89,32 +111,30 @@ class InceptionNet(nn.Module):
 
     def forward(self, X):
         X = torch.unsqueeze(X, 1)
-        # print('a', X.shape)
         X = F.relu(self.conv1(X))
-        # print('b', X.shape)
-        X = self.max1(X)
-        # print('c', X.shape)
-        X = F.relu(self.conv2(X))
-        # print('d', X.shape)
-        X = self.max2(X)
+        X = F.relu(self.conv2(X)) # Bx32x454
+        X = F.relu(self.conv3(X)) # Bx32x454
+        X = self.max(X) # Bx64x454
         # print('e', X.shape)
 
-        X = self.incept1(X)
-        # print('f', X.shape)
-
-        X = self.max3(X)
+        X = self.incept1(X) # Bx64x227
+        X = self.max1(X) # Bx257x227
         # print('g', X.shape)
 
-        X = self.incept2(X)
-        # print('h', X.shape)
+        X = self.incept2(X) # Bx256x114
+        X = self.max2(X)
 
+        X = self.incept3(X) #Bx256x57
+        X = self.max3(X)
+
+        X = self.incept4(X) #Bx256x29
         X = self.avg_pool(X)
         # print('i', X.shape)
 
-        X = torch.flatten(X, start_dim=1)
+        X = torch.flatten(X, start_dim=1) #Bx256x13
         # print('j', X.shape)
 
-        X = F.relu(self.linear1(X))
+        X = F.relu(self.linear1(X)) #Bx3328
         # print('k', X.shape)
         X = self.linear2(X)
         # print('l', X.shape)

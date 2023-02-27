@@ -33,14 +33,14 @@ class TransitionBlock(nn.Module):
 class DenseLayer(nn.Module):
     # Dense Layer
     #
-    def __init__(self, input_features, bn_size, growth, dropout_rate=0):
-        # bn_size is used to reduce the number of features, with a 1x1 convolution
+    def __init__(self, input_features, bottleneck_factor, growth, dropout_rate=0):
+        # bottleneck_factor is used to REDUCE the number of features, with a 1x1 convolution
         # growth is the number of new features added per layer
         super().__init__()
         self.BN1 = nn.BatchNorm1d(input_features)
-        self.conv1 = nn.Conv1d(input_features, bn_size * growth, kernel_size=1)
-        self.BN2 = nn.BatchNorm1d(bn_size * growth)
-        self.conv2 = nn.Conv1d(bn_size * growth, growth, kernel_size=3, stride=1, padding=1)
+        self.conv1 = nn.Conv1d(input_features, bottleneck_factor * growth, kernel_size=1)
+        self.BN2 = nn.BatchNorm1d(bottleneck_factor * growth)
+        self.conv2 = nn.Conv1d(bottleneck_factor * growth, growth, kernel_size=3, stride=1, padding=1)
         self.dropout = nn.Dropout(p=dropout_rate)
 
     def concat_features(self, inputs):
@@ -79,13 +79,13 @@ class DenseBlock(nn.ModuleDict):
     # Series of DenseLayers, where each layer receives as an input all of the feature maps from previous layers
     # As a result, the input size of each dense layer increases by growth_rate with each iteration
 
-    def __init__(self, num_layers, num_input_features, bn_size, growth_rate, dropout=0):
+    def __init__(self, num_layers, num_input_features, bottleneck_factor, growth_rate, dropout=0):
         super().__init__()
         for i in range(num_layers):
             # Each layer has an input_features size that increases by growth_rate (K) each layer
             layer = DenseLayer(
                 input_features=num_input_features + (i * growth_rate),
-                bn_size=bn_size,
+                bottleneck_factor=bottleneck_factor,
                 growth=growth_rate,
                 dropout_rate=dropout,
             )
@@ -108,13 +108,22 @@ class DenseBlock(nn.ModuleDict):
 
 
 class DenseNet(nn.Module):
-    def __init__(self, growth_rate=20, block_config=(3, 6, 9, 12), num_init_features=12, bn_size=4, dropout=0,
+    def __init__(self, growth_rate=32, block_config=(3, 6, 12, 8), num_init_features=16, bottleneck_factor=4, dropout=0.2,
                  num_outputs=12):
+        '''
+
+        :param growth_rate:
+        :param block_config:
+        :param num_init_features: initial number of feature maps to create from the firt convolution
+        :param bottleneck_factor:
+        :param dropout:
+        :param num_outputs:
+        '''
         super().__init__()
 
         self.features = nn.Sequential(
             OrderedDict([
-                ("conv0", nn.Conv1d(1, num_init_features, kernel_size=7, stride=2, padding=3)),
+                ("conv0", nn.Conv1d(1, num_init_features, kernel_size=7, stride=2, padding=1)),
                 ("bn0", nn.BatchNorm1d(num_init_features)),
                 ("relu0", nn.ReLU()),
                 ("avgpool0", nn.AvgPool1d(kernel_size=3, stride=2, padding=1))
@@ -126,7 +135,7 @@ class DenseNet(nn.Module):
             block = DenseBlock(
                 num_layers=num_layers,
                 num_input_features=num_features,
-                bn_size=bn_size,
+                bottleneck_factor=bottleneck_factor,
                 growth_rate=growth_rate,
                 dropout=dropout,
             )
