@@ -4,160 +4,7 @@ import torch.nn.functional as F
 from torch.nn import TransformerEncoder, TransformerEncoderLayer
 import math
 from torch import nn, Tensor
-
-
-################################################################################
-############################## MLP Models ######################################
-################################################################################
-
-
-############### Initial MLP Model - Optuna #####################################
-class MLP(nn.Module):
-    # define model elements
-    def __init__(self, n_inputs, n_output, trial):
-        super(MLP, self).__init__()
-        l1 = trial.suggest_int("l1", 128, 512)
-        l2 = trial.suggest_int("l2", 32, 128)
-        # input to first hidden layer
-        self.hidden1 = nn.Linear(n_inputs, l1)
-        nn.init.kaiming_uniform_(self.hidden1.weight, nonlinearity='relu')
-        self.act1 = nn.ReLU()
-        # second hidden layer
-        self.hidden2 = nn.Linear(l1, l2)
-        nn.init.kaiming_uniform_(self.hidden2.weight, nonlinearity='relu')
-        self.act2 = nn.ReLU()
-        # third hidden layer and output
-        self.hidden3 = nn.Linear(l2, n_output)
-        nn.init.xavier_uniform_(self.hidden3.weight)
-        # self.act3 = Sigmoid()
-
-    # forward propagate input
-    def forward(self, X):
-        # input to first hidden layer
-        X = self.hidden1(X)
-        X = self.act1(X)
-        # second hidden layer
-        X = self.hidden2(X)
-        X = self.act2(X)
-        # third hidden layer and output
-        X = self.hidden3(X)
-        # X = self.act3(X)
-        return X
-
-
-############### Final MLP Model - using layer sizes from Optuna ################
-class MLP_final(nn.Module):
-    # define model elements
-    def __init__(self, n_inputs, n_output):
-        super().__init__()
-        l1 = 400
-        l2 = 100
-        # input to first hidden layer
-        self.hidden1 = nn.Linear(n_inputs, l1)
-        nn.init.kaiming_uniform_(self.hidden1.weight, nonlinearity='relu')
-        self.act1 = nn.ReLU()
-        # second hidden layer
-        self.hidden2 = nn.Linear(l1, l2)
-        nn.init.kaiming_uniform_(self.hidden2.weight, nonlinearity='relu')
-        self.act2 = nn.ReLU()
-        # third hidden layer and output
-        self.hidden3 = nn.Linear(l2, n_output)
-        nn.init.xavier_uniform_(self.hidden3.weight)
-        # self.act3 = Sigmoid()
-
-    # forward propagate input
-    def forward(self, X):
-        # input to first hidden layer
-        X = self.hidden1(X)
-        X = self.act1(X)
-        # second hidden layer
-        X = self.hidden2(X)
-        X = self.act2(X)
-        # third hidden layer and output
-        X = self.hidden3(X)
-        # X = self.act3(X)
-        return X
-
-
-################################################################################
-################  Transformer-based Model ######################################
-################################################################################
-
-class xformer(nn.Module):
-
-    # Constructor
-    def __init__(
-        self,
-        target_labels,
-        input_dim=10197,
-        dim_model=512,
-        pool=10,
-        num_heads=8,
-        num_encoder_layers=6,
-        num_decoder_layers=6,
-        dropout_p=0.1,
-    ):
-        super().__init__()
-
-        # INFO
-        self.model_type = "Transformer"
-        self.dim_model = dim_model
-
-        # LAYERS
-        '''self.positional_encoder = PositionalEncoding(
-            dim_model=dim_model, dropout_p=dropout_p, max_len=5000
-        )'''
-
-        # Pool & prep src for transformer
-        self.pool = nn.MaxPool1d(pool, stride=pool)
-        self.pool_out = (input_dim-(pool-1)-1)//pool+1
-        self.src_in = nn.Linear(self.pool_out, dim_model)
-
-        # Embed 
-        #self.embedding = nn.Embedding(target_labels, dim_model)
-
-        # Transformer
-        self.transformer = nn.Transformer(
-            d_model=dim_model,
-            nhead=num_heads,
-            num_encoder_layers=num_encoder_layers,
-            num_decoder_layers=num_decoder_layers,
-            dropout=dropout_p,
-            batch_first=True
-        )
-
-        # Output layer (to take on transformer dimensions)
-        self.target_in = nn.Linear(target_labels, self.dim_model)
-        self.out = nn.Linear(self.dim_model, target_labels)
-
-    def forward(
-        self,
-        src,
-        tgt,
-    ):
-        # Src size must be (batch_size, src sequence length)
-        # Tgt size must be (batch_size, tgt sequence length)
-
-        # Embedding + positional encoding - Out size = (batch_size, sequence length, dim_model)
-        #src = self.embedding(src) * math.sqrt(self.dim_model)
-        #tgt = self.embedding(tgt) * math.sqrt(self.dim_model)
-        #src = self.positional_encoder(src)
-        #tgt = self.positional_encoder(tgt)
-
-        # we permute to obtain size (sequence length, batch_size, dim_model),
-        #src = src.permute(1, 0, 2)
-        #tgt = tgt.permute(1, 0, 2)
-
-        # Transformer blocks - Out size = (sequence length, batch_size, num_tokens)
-        src = self.pool(src)
-        src = self.src_in(src)
-        src = torch.unsqueeze(src, 0)
-        tgt = self.target_in(tgt)
-        tgt=torch.unsqueeze(tgt, 0)
-        transformer_out = self.transformer(src, tgt)
-        out = self.out(transformer_out)
-
-        return out.squeeze()
+from einops.layers.torch import Rearrange
 
 
 class PositionalEncoding(nn.Module):
@@ -239,21 +86,21 @@ class Attention1D(nn.Module):
     # Constructor
     def __init__(
         self,
-        input_dim=200,
-        dim_model=256,
-        dim_out= 100,
+        d_input=512,
+        d_k=64,
+        d_v=64,
     ):
         super().__init__()
 
         # LAYERS
         # W_k (Dx X Dq)
-        self.key_linear = nn.Linear(input_dim, dim_model)
+        self.key_linear = nn.Linear(d_input, d_k)
         # W_q (Dx X Dq)
-        self.query_linear = nn.Linear(input_dim, dim_model)
+        self.query_linear = nn.Linear(d_input, d_k)
         # W_v (Dx X Dv)
-        self.value_linear = nn.Linear(input_dim, dim_out)
+        self.value_linear = nn.Linear(d_input, d_v)
 
-        self.softmax = nn.Softmax(dim=1)
+        self.softmax = nn.Softmax(dim=0)
 
     def forward(self, X):
         # Create key, query, and value
@@ -262,128 +109,158 @@ class Attention1D(nn.Module):
         V = self.value_linear(X)
 
         # Scale factor
-        D_q = K.shape[1]
+        D_q = K.shape[-1]
 
         # Matmuls
-        E = torch.matmul(K, Q.t())/math.sqrt(D_q)
+        E = torch.matmul(K, Q.permute(0, 2, 1))/math.sqrt(D_q)
+        # E = torch.bmm(K, torch.permute(Q, (0, 2, 1)))/math.sqrt(D_q)
         A = self.softmax(E)
+        # Y = torch.bmm(A, V)
         Y = torch.matmul(A, V)
         return Y
 
-############### Multihead attention - 4 heads ##################################
-## Combines four Attention1D layers in to one
-class Fourhead_attention1D(nn.Module):
+
+class MultiheadAttention1D(nn.Module):
     # Constructor
     def __init__(
         self,
-        input_dim=200,
-        dim_model=256,
-        dim_out= 100,
+        num_heads=8,
+        d_model=512
     ):
         super().__init__()
 
+        d_k = d_model // num_heads
+
         # Create layer for each head
+        # self.heads = []
+        # for i in range(num_heads):
+        #     head = Attention1D(d_input=d_model, d_k=d_k, d_v=d_k)
+        #     self.heads.append(head)
 
-        self.head1=Attention1D(input_dim, dim_model=dim_model, dim_out= dim_model)
-        self.head2=Attention1D(input_dim, dim_model=dim_model, dim_out= dim_model)
-        self.head3=Attention1D(input_dim, dim_model=dim_model, dim_out= dim_model)
-        self.head4=Attention1D(input_dim, dim_model=dim_model, dim_out= dim_model)
+        self.heads = nn.ModuleList([Attention1D(d_input=d_model, d_k=d_k, d_v=d_k) for i in range(num_heads)])
 
-    def forward(self, X):
-        
-        a = self.head1(X)
-        b = self.head2(X)
-        c = self.head3(X)
-        d = self.head4(X)
-        out = torch.hstack((a, b, c, d))
+        self.linear = nn.Linear(num_heads*d_k, d_model)
 
-        return out
+        # self.head1=Attention1D(input_dim, dim_model=dim_model, dim_out= dim_model)
+        # self.head2=Attention1D(input_dim, dim_model=dim_model, dim_out= dim_model)
+        # self.head3=Attention1D(input_dim, dim_model=dim_model, dim_out= dim_model)
+        # self.head4=Attention1D(input_dim, dim_model=dim_model, dim_out= dim_model)
 
-############### Multihead attention block - uses 4-heads, FC layer #############
-## Uses FC layer to return output shape of fourhead attention to same as initial input
-## Also adds residual connection to create the block
-class MHA_block(nn.Module):
+    def forward(self, x):
+
+        outputs = []
+        for head in self.heads:
+            outputs.append(head(x))
+        # a = self.head1(X)
+        # b = self.head2(X)
+        # c = self.head3(X)
+        # d = self.head4(X)
+        # out = torch.hstack((a, b, c, d))
+        out = torch.cat(outputs, -1)
+        y = self.linear(out)
+
+        return y
+
+
+class EncoderBlock(nn.Module):
 
     # Constructor
     def __init__(
         self,
-        dim = 128,
-        num_heads=4,
+        d_model=512,
+        num_heads=8,
+        dropout=0.1
     ):
         super().__init__()
 
         # INFO
-        # Create layer for each head
-        self.mhattention = Fourhead_attention1D(input_dim=dim, dim_model=dim, dim_out= dim)
+        self.mhattention = MultiheadAttention1D(num_heads=num_heads, d_model=d_model)
         
-        self.linear = nn.Linear(dim*num_heads, dim)
+        self.linear1 = nn.Linear(d_model, d_model*4)
+        self.linear2 = nn.Linear(d_model*4, d_model)
+
+        self.dropout = nn.Dropout(p=dropout)
+
+        self.norm = nn.LayerNorm(d_model)
 
     def forward(self, X):
         # Transformer blocks - Out size = (sequence length, batch_size, num_tokens)
-        
-        out = self.mhattention(X)
-        out = F.relu(self.linear(out))
-        out = out+X
+
+        attention_output = self.mhattention(X)
+        attention_output = self.dropout(attention_output) + X
+        attention_output = self.norm(attention_output)
+
+        out = F.relu(self.linear1(attention_output))
+        out = self.dropout(out)
+        out = F.relu(self.linear2(out))
+        out = self.dropout(out)
+        out = out+attention_output
+        out = self.norm(out)
       
         return out
 
-#################### model_x 7 MHA Block layers followed by FC layers ##########
+
 class AttentionBlockModel(nn.Module):
 
     # Constructor
     def __init__(
         self,
-        target_labels=12,
-        input_dim=10197,
-        dim_model=512,
+        num_outputs=12,
+        input_dim=903,
+        d_model=512,
         num_heads=8,
         dropout_p=0.2,
+        patch_size=50
     ):
         super().__init__()
 
         self.dropout = torch.nn.Dropout(p=dropout_p)
 
-        self.linear1 = nn.Linear(input_dim, 500)
-        self.linear2 = nn.Linear(500,128)
+        self.remainder = input_dim % patch_size
+        num_patches = input_dim // patch_size
 
-        self.MHA1 = MHA_block(dim=128, num_heads=4)
-        self.MHA2 = MHA_block(dim=128, num_heads=4)
-        self.MHA3 = MHA_block(dim=128, num_heads=4)
-        self.MHA4 = MHA_block(dim=128, num_heads=4)
-        self.MHA5 = MHA_block(dim=128, num_heads=4)
-        self.MHA6 = MHA_block(dim=128, num_heads=4)
-        self.MHA7 = MHA_block(dim=128, num_heads=4)
+        self.to_patch_embedding = nn.Sequential(
+            Rearrange('b (n p) -> b n p', p=patch_size),
+            nn.LayerNorm(patch_size),
+            nn.Linear(patch_size, d_model),
+            nn.LayerNorm(d_model),
+        )
+        # self.embedding = nn.Linear(input_dim, d_model)
+        self.pos_embedding = PositionalEncoding(d_model=d_model)
 
-        self.linear3 = nn.Linear(128,50)
-        self.linear4 = nn.Linear(50, target_labels)
+        self.MHA1 = EncoderBlock(d_model=d_model, num_heads=num_heads)
+        self.MHA2 = EncoderBlock(d_model=d_model, num_heads=num_heads)
+        self.MHA3 = EncoderBlock(d_model=d_model, num_heads=num_heads)
+        self.MHA4 = EncoderBlock(d_model=d_model, num_heads=num_heads)
+        self.MHA5 = EncoderBlock(d_model=d_model, num_heads=num_heads)
+        self.MHA6 = EncoderBlock(d_model=d_model, num_heads=num_heads)
+
+        self.linear = nn.Linear(d_model, 20)
+        self.linear2 = nn.Linear(20*num_patches, num_outputs)
 
 
     def forward(self, X):
 
         #Start with 2 FC layers, with dropout
-        X = F.relu(self.linear1(X))
-        X = self.dropout(X)
-        X = F.relu(self.linear2(X))
-        X = self.dropout(X)
+        X = X[:, :-self.remainder]
+        embedding = self.to_patch_embedding(X)
+        input = self.pos_embedding(embedding)
 
         # Seven MHA Blocks
-        X = self.MHA1(X)
+        X = self.MHA1(input)
         X = self.MHA2(X)
         X = self.MHA3(X)
         X = self.MHA4(X)
         X = self.MHA5(X)
         X = self.MHA6(X)
-        X = self.MHA7(X)
 
         # Two FC layers at end before output
-        out = F.relu(self.linear3(X))
-        out = self.linear4(out)
+        out = F.relu(self.linear(X))
+        out = torch.reshape(out, (out.shape[0], -1))
+        out = self.linear2(out)
 
         return out
 
-################################################################################
-###################### 1D Convolutional Models #################################
-################################################################################
 
 # model definition
 class ConvolutionalNet(nn.Module):

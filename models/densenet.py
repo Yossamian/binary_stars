@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from collections import OrderedDict
+import numpy as np
 
 """
 Densenet implementation, in 1d for signal processing
@@ -108,7 +109,7 @@ class DenseBlock(nn.ModuleDict):
 
 
 class DenseNet(nn.Module):
-    def __init__(self, growth_rate=32, block_config=(3, 6, 12, 8), num_init_features=16, bottleneck_factor=4, dropout=0.2,
+    def __init__(self, *, growth_rate=32, block_config=(3, 6, 12, 8), num_init_features=16, bottleneck_factor=4, dropout=0.2,
                  num_outputs=12):
         '''
 
@@ -163,6 +164,9 @@ class DenseNet(nn.Module):
             elif isinstance(m, nn.Linear):
                 nn.init.constant_(m.bias, 0)
 
+        self.num_params = self.__get_num_params__()
+        print(f"Number of parameters: {self.num_params}")
+
     def forward(self, x):
         # Unsqueeze to put data in (Batch size, 1 channel, freq dim) shape
         x = torch.unsqueeze(x, 1)
@@ -176,3 +180,8 @@ class DenseNet(nn.Module):
         features = self.linear_final(features)
 
         return features
+
+    def __get_num_params__(self):
+        model_parameters = filter(lambda p: p.requires_grad, self.parameters())
+        num_params = sum([np.prod(p.size()) for p in model_parameters])
+        return num_params

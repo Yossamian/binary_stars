@@ -28,6 +28,7 @@ def main(config_loc, experiment_name=None):
         num_outputs = 2
 
     # Load model
+    # model = getattr(models, parameters['model'])(num_outputs=num_outputs, patch_size=parameters['patch_size'])
     model = getattr(models, parameters['model'])(num_outputs=num_outputs)
     print('MODEL ARCHITECTURE:')
     print(model)
@@ -35,7 +36,7 @@ def main(config_loc, experiment_name=None):
     # Create datasets and dataloaders with given # of path files
     # num_sets = 2
     # paths = list(range(num_sets))
-    paths = list(range(9))
+    paths = list(range(parameters['num_sets']))
     num_sets = len(paths)
     train_data, val_data, test_data = split_dataset(train=0.8, val=0.1, target_param=parameters['target_param'], paths=paths)
     # full_data = GaiaDataset(paths, target_param=parameters['target_param'])
@@ -45,8 +46,8 @@ def main(config_loc, experiment_name=None):
     print(f'Dataset created with {len(train_data)} training examples, {len(val_data)} val examples, and {len(test_data)} test examples')
 
     # Create Dataloaders
-    train_loader = DataLoader(train_data, shuffle=False, batch_size=256)
-    val_loader = DataLoader(val_data, shuffle=True, batch_size=256)
+    train_loader = DataLoader(train_data, shuffle=False, batch_size=64)
+    val_loader = DataLoader(val_data, shuffle=True, batch_size=64)
 
     trainer = Trainer(
         model=model,

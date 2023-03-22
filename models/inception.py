@@ -109,6 +109,9 @@ class InceptionNet(nn.Module):
         self.linear1 = nn.Linear(3328, 400)
         self.linear2 = nn.Linear(400, num_outputs)
 
+        self.num_params = self.__get_num_params__()
+        print(f"Number of parameters: {self.num_params}")
+
     def forward(self, X):
         X = torch.unsqueeze(X, 1)
         X = F.relu(self.conv1(X))
@@ -140,6 +143,11 @@ class InceptionNet(nn.Module):
         # print('l', X.shape)
 
         return X
+
+    def __get_num_params__(self):
+        model_parameters = filter(lambda p: p.requires_grad, self.parameters())
+        num_params = sum([np.prod(p.size()) for p in model_parameters])
+        return num_params
 
 
 class ConvolutionalNet(nn.Module):
