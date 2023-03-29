@@ -1,2 +1,2 @@
 from .stars_dataset import GaiaDataset
-from .dataset_funcs import split_dataset
+from .dataset_funcs import split_dataset, split_dataset_new

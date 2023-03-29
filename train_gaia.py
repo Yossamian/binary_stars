@@ -1,9 +1,10 @@
+import numpy as np
 import torch
 from torch.utils.data import random_split, DataLoader
 from trainer_gaia import Trainer
 import torch.nn as nn
 import torch.nn.functional as F
-from datasets import GaiaDataset, split_dataset
+from datasets import GaiaDataset, split_dataset, split_dataset_new
 # from models.models_original import ConvolutionalNet
 import models
 import yaml
@@ -34,20 +35,19 @@ def main(config_loc, experiment_name=None):
     print(model)
 
     # Create datasets and dataloaders with given # of path files
-    # num_sets = 2
-    # paths = list(range(num_sets))
     paths = list(range(parameters['num_sets']))
     num_sets = len(paths)
-    train_data, val_data, test_data = split_dataset(train=0.8, val=0.1, target_param=parameters['target_param'], paths=paths)
-    # full_data = GaiaDataset(paths, target_param=parameters['target_param'])
-    # train_len = int(len(full_data) * 0.75)
-    # val_len = len(full_data) - train_len
-    # train_data, val_data = random_split(full_data, [train_len, val_len], generator=torch.Generator().manual_seed(42))
+    # train_data, val_data, test_data = split_dataset(train=0.8, val=0.1, target_param=parameters['target_param'], paths=paths)
+    train_data, val_data, test_data = split_dataset_new(val_test_len=15000, target_param=parameters['target_param'], paths=paths)
+
+    print("Dataset has been split")
+    torch.save(test_data, f"/media/sam/data/work/stars/test_sets/{parameters['target_param']}_test_set")
+
     print(f'Dataset created with {len(train_data)} training examples, {len(val_data)} val examples, and {len(test_data)} test examples')
 
     # Create Dataloaders
-    train_loader = DataLoader(train_data, shuffle=False, batch_size=64)
-    val_loader = DataLoader(val_data, shuffle=True, batch_size=64)
+    train_loader = DataLoader(train_data, shuffle=False, num_workers=8, batch_size=512)
+    val_loader = DataLoader(val_data, shuffle=True, num_workers=8, batch_size=512)
 
     trainer = Trainer(
         model=model,

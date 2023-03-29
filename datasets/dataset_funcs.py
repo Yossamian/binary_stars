@@ -11,3 +11,11 @@ def split_dataset(train, val, target_param, paths, seed=42):
     train_data, val_data, test_data = random_split(full_data, [train_len, val_len, test_len], generator=torch.Generator().manual_seed(seed))
 
     return train_data, val_data, test_data
+
+
+def split_dataset_new(val_test_len, target_param, paths, seed=42):
+    full_data = GaiaDataset(paths, target_param=target_param)
+    train_len = len(full_data) - (2 * val_test_len)
+    train_data, val_data, test_data = random_split(full_data, [train_len, val_test_len, val_test_len], generator=torch.Generator().manual_seed(seed))
+
+    return train_data, val_data, test_data

@@ -58,18 +58,18 @@ def multi_yaml():
     folder_check(config_loc, config_start, config_finish)
 
     all_parameters = {'model': ['DenseNet'],  # ['DenseNet', 'ConvolutionalNet', 'InceptionNet'],
-                      'optimizer': ['Adam', 'SGD'],
+                      'optimizer': ['Adam'],
                       'loss': ['MSE'],   #['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'], USE MASE!!!!!!!!!
-                      'lr': [.001, .0005, .0001],
-                      'wd': [.0005, .001, .01],
-                      'epochs': [150],
-                      'early_stopping': [20],
+                      'lr': [.0001],
+                      'wd': [.001, .0001, .00001],
+                      'epochs': [500],
+                      'early_stopping': [30],
                       'sets_between_eval': [2],
-                      'optimizer_step': [50],
+                      'optimizer_step': [60],
                       'optimizer_gamma': [0.5],
-                      'target_param': ['vsini'], # ['vsini', 'metal', 'alpha', 'temp', 'log_g', 'lumin', 'all'],
+                      'target_param': ['vsini', 'alpha'], #['vsini', 'metal', 'alpha', 'temp', 'log_g', 'lumin'],
                       'patch_size': [30],
-                      'num_sets': [6]
+                      'num_sets': [22]
                       }
 
     for combo in product(*all_parameters.values()):

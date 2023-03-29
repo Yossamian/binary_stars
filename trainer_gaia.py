@@ -25,7 +25,8 @@ class Trainer(object):
                  num_sets,
                  train_loader,
                  val_loader,
-                 experiment_name="binary_stars"):
+                 experiment_name="binary_stars",
+                 parallel=False):
 
         # Device management
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -39,6 +40,8 @@ class Trainer(object):
         torch.save(parameters, self.folder.joinpath(f'parameters.pt'))
 
         # Model Parameters
+        if parallel:
+            model = torch.nn.DataParallel(model)
         self.model = model.to(self.device)
 
         # Optimizer Parameters

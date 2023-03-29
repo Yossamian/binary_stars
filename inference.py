@@ -1,6 +1,6 @@
 import torch
-from torch.utils.data import random_split, DataLoader
-from datasets import GaiaDataset, split_dataset
+from torch.utils.data import DataLoader
+from datasets import split_dataset
 import utils
 import models
 from pathlib import Path

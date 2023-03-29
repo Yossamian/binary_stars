@@ -97,7 +97,7 @@ class GaiaDataset(Dataset):
 if __name__ == "__main__":
     opts = ['all', 'v_sin_i', 'metal', 'alpha', 'temp', 'log_g', 'lumin', 'none']
     for opt in opts:
-        dataset = GaiaDataset(paths=[0, 1, 2, 3], target_param=opt)
+        dataset = GaiaDataset(paths=range(15), target_param=opt)
         a = dataset.spectra
         lab = dataset.labels
         print(f'************{opt}*************')
