@@ -12,6 +12,7 @@ import numpy as np
 
 
 def main(name):
+
     model_state_dict, parameters = load_model(name)
 
     print('PARAMETERS:')
@@ -52,6 +53,12 @@ def main(name):
 
 
 def load_model(experiment_name):
+    """
+    Load a model based on a specific experiment name
+    Will return the best_model and the parameters_path
+    :param experiment_name:
+    :return:
+    """
     folder = Path(f'/media/sam/data/work/stars/configurations/saved_models/{experiment_name}')
     # state_dict_path = Path(f'/media/sam/data/work/stars/configurations/saved_models/{experiment_name}/state_dicts/best_model.pt')
     state_dict_path = folder.joinpath('state_dicts/best_model.pt')
