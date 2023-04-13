@@ -13,9 +13,7 @@ from utils.metrics_updated import MAPE_adjusted, SMAPE_adjusted, MASE, all_metri
 import utils.metrics_updated
 from torch.optim.lr_scheduler import StepLR
 
-
 # comet_ml.config.save(api_key="8EKfM7gNRhoWg9I2sQz6rcHls")
-
 
 
 class Trainer(object):
@@ -25,6 +23,7 @@ class Trainer(object):
                  num_sets,
                  train_loader,
                  val_loader,
+                 test_loader=None,
                  experiment_name="binary_stars",
                  parallel=False):
 
@@ -64,6 +63,7 @@ class Trainer(object):
         # Dataloaders and training
         self.train_loader = train_loader
         self.val_loader = val_loader
+        self.test_loader = test_loader
         self.epochs = parameters['epochs']
         self.sets_between_eval = parameters['sets_between_eval']
         self.early_stopping = parameters['early_stopping']
@@ -127,10 +127,26 @@ class Trainer(object):
 
                 print("\n")
 
-    def _evaluate_one_epoch(self, epoch):
+    def test(self):
+        print('****Beginning Testing****')
+        print(f'Training on GPU:{next(self.model.parameters()).device}')
+        model_state_dict = torch.load(self.state_dict_folder.joinpath('best_model.pt'))
+        self.model.load_state_dict(model_state_dict)
+
+        test_loss = self._evaluate_one_epoch(epoch="test_set", test=True).item()
+        print(f"Test Loss: {test_loss}")
+
+    def _evaluate_one_epoch(self, epoch, test=False):
 
         self.model.eval()
         printed = False
+
+        if test == False:
+            set = "val"
+            loader = self.test_loader
+        else:
+            set = "test"
+            loader = self.test_loader
 
         with self.experiment.test() if self.comet else nullcontext():
 
@@ -142,7 +158,7 @@ class Trainer(object):
                 total_mae = 0
                 total_torch_mse = 0
                 num_samples = 0
-                for j, (inputs, targets) in enumerate(self.val_loader):
+                for j, (inputs, targets) in enumerate(loader):
 
                     inputs = inputs.to(self.device)
                     targets = targets.to(self.device)
@@ -173,7 +189,7 @@ class Trainer(object):
 
                     ### Print a certain number of output samples for the val set
                     if not printed:
-                        print("SAMPLE MODEL OUTPUTS FROM VAL SET:")
+                        print(f"SAMPLE MODEL OUTPUTS FROM {set} SET:")
                         self.create_sample_outputs(predictions, target_correct, epoch, number=3)
                         printed = True
 
@@ -184,30 +200,30 @@ class Trainer(object):
                 epoch_mae = total_mae / num_samples
                 epoch_torch_mse = total_torch_mse / (j+1)
 
-                print("Val SMAPE: ", epoch_smape.item())
-                print("Val MAPE: ", epoch_mape.item())
-                print("Val MASE: ", epoch_mase.item())
-                print("Val MAE: ", epoch_mae.item())
-                print("Val Torch MSE: ", epoch_torch_mse.item())
+                print(f"{set} SMAPE: ", epoch_smape.item())
+                print(f"{set} MAPE: ", epoch_mape.item())
+                print(f"{set} MASE: ", epoch_mase.item())
+                print(f"{set} MAE: ", epoch_mae.item())
+                print(f"{set} Torch MSE: ", epoch_torch_mse.item())
 
                 total_range_loss = 0  # Total range_loss adds up the range losses across all metrics
                 for label in self.param_labels:
                     label_losses = self.metrics[label].compute()
                     total_range_loss += label_losses['RangeLoss']
-                    print(f"{label} val losses: {label_losses}")
+                    print(f"{label} {set} losses: {label_losses}")
                     if self.comet:
                         self.comet_log_torchmetrics(label, label_losses)
                     self.metrics[label].reset()
 
-                print("Val Range Loss: ", total_range_loss.item())
+                print(f"{set} Range Loss: ", total_range_loss.item())
 
                 if self.comet:
-                    self.experiment.log_metric('val_loss', epoch_loss)
-                    self.experiment.log_metric('val_mape', epoch_mape)
-                    self.experiment.log_metric('val_smape', epoch_smape)
-                    self.experiment.log_metric('val_mase', epoch_mase)
-                    self.experiment.log_metric('val_mae', epoch_mae)
-                    self.experiment.log_metric('total_range_loss', total_range_loss)
+                    self.experiment.log_metric(f'{set}_loss', epoch_loss)
+                    self.experiment.log_metric(f'{set}mape', epoch_mape)
+                    self.experiment.log_metric(f'{set}_smape', epoch_smape)
+                    self.experiment.log_metric(f'{set}_mase', epoch_mase)
+                    self.experiment.log_metric(f'{set}_mae', epoch_mae)
+                    self.experiment.log_metric(f'{set}_total_range_loss', total_range_loss)
 
         return epoch_loss
 

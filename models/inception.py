@@ -29,24 +29,20 @@ class InceptionBlock(nn.Module):
         self.conv5 = nn.Conv1d(five_dim_red, out_channels_5, kernel_size=5, stride=1, padding=2)
 
         # max pool
-        self.maxpool = nn.MaxPool1d(3, stride=1, padding=1)
+        self.maxpool = nn.MaxPool1d(kernel_size=3, stride=1, padding=1)
         self.dimredmax = nn.Conv1d(in_channels, out_channels_max, 1)
 
     def forward(self, X):
         one_d = F.relu(self.conv1(X))
-        # print('1d shape', one_d.shape)
 
         three_d = F.relu(self.dimred3(X))
         three_d = F.relu(self.conv3(three_d))
-        # print('3d shape', three_d.shape)
 
         five_d = F.relu(self.dimred5(X))
         five_d = F.relu(self.conv5(five_d))
-        # print('5d shape', five_d.shape)
 
         max_d = F.relu(self.maxpool(X))
         max_d = F.relu(self.dimredmax(max_d))
-        # print('maxd shape', max_d.shape)
 
         # depthwise concatenation
         final = torch.cat((one_d, three_d, five_d, max_d), dim=1)

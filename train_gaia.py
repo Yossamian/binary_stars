@@ -11,9 +11,9 @@ import yaml
 from pathlib import Path
 
 
-def main(config_loc, experiment_name=None):
+def main(config_loc, experiment_name=None, selection="train"):
 
-    print(f'Running main() for {config_loc.name}')
+    print(f'Running main() for {config_loc}')
 
     # Read in parameters
     with open(config_loc, 'r') as f:
@@ -29,7 +29,6 @@ def main(config_loc, experiment_name=None):
         num_outputs = 2
 
     # Load model
-    # model = getattr(models, parameters['model'])(num_outputs=num_outputs, patch_size=parameters['patch_size'])
     model = getattr(models, parameters['model'])(num_outputs=num_outputs)
     print('MODEL ARCHITECTURE:')
     print(model)
@@ -46,8 +45,9 @@ def main(config_loc, experiment_name=None):
     print(f'Dataset created with {len(train_data)} training examples, {len(val_data)} val examples, and {len(test_data)} test examples')
 
     # Create Dataloaders
-    train_loader = DataLoader(train_data, shuffle=False, num_workers=8, batch_size=512)
-    val_loader = DataLoader(val_data, shuffle=True, num_workers=8, batch_size=512)
+    train_loader = DataLoader(train_data, shuffle=False, num_workers=8, batch_size=1024)
+    val_loader = DataLoader(val_data, shuffle=True, num_workers=8, batch_size=1024)
+    test_loader = DataLoader(test_data, shuffle=True, num_workers=8, batch_size=1024)
 
     trainer = Trainer(
         model=model,
@@ -55,16 +55,25 @@ def main(config_loc, experiment_name=None):
         num_sets=num_sets,
         train_loader=train_loader,
         val_loader=val_loader,
-        experiment_name=experiment_name
+        test_loader=test_loader,
+        experiment_name=experiment_name,
+        parallel=True
     )
 
-    trainer.train()
+    if selection == "train":
+        trainer.train()
+    elif selection == "test":
+        trainer.test()
+    else:
+        raise ValueError("Must select either 'train' or 'test'")
 
 
 if __name__ == "__main__":
 
     root_config = Path('/media/sam/data/work/stars/configurations/config_loc')
-    # config_loc = root_config.joinpath('basic.yaml')
-
     config_loc = next(root_config.joinpath('config_start').iterdir())
-    main(config_loc, experiment_name=None)
+
+    # main(config_loc, experiment_name=None)
+
+    config_loc = "/media/sam/data/work/stars/configurations/config_loc/config_finish/DenseNet_alpha_MSE_2023_04_10_2230.yaml"
+    main(config_loc, experiment_name="Gaia_inference", selection="test")
