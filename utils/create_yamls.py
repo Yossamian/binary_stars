@@ -61,12 +61,12 @@ def multi_yaml():
                       'optimizer': ['Adam'],
                       'loss': ['MASE'],   #['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'], USE MASE!!!!!!!!!
                       'lr': [.001],
-                      'wd': [0.0001, 0],
-                      'epochs': [400],
+                      'wd': [0],
+                      'epochs': [500],
                       'early_stopping': [20],
                       'sets_between_eval': [3],
-                      'optimizer_step': [50],
-                      'optimizer_gamma': [0.5],
+                      'optimizer_step': [400],
+                      'optimizer_gamma': [0.2],
                       'target_param': ['all'], #['metal', 'alpha', 'temp'],
                       'patch_size': [30],
                       'num_sets': [22]

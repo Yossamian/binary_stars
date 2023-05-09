@@ -9,11 +9,13 @@ from contextlib import nullcontext
 from utils.metrics_updated import all_metrics
 import pandas as pd
 import numpy as np
+from utils.best_models import get_model_loc
 
 
-def main(name):
+def main(selection, experiment_name=None):
 
-    model_state_dict, parameters = load_model(name)
+    model_loc = get_model_loc(selection)
+    model_state_dict, parameters = load_model(model_loc=model_loc)
 
     print('PARAMETERS:')
     for key, value in parameters.items():
@@ -25,6 +27,7 @@ def main(name):
         num_outputs = 2
 
     # Load model
+    model_state_dict = remove_module_from_state_dict(model_state_dict)
     model = getattr(models, parameters['model'])(num_outputs=num_outputs)
     model.load_state_dict(model_state_dict)
     print('MODEL ARCHITECTURE:')
@@ -32,35 +35,35 @@ def main(name):
 
     # Create datasets and dataloaders with given # of path files
     # num_sets = 2
-    # paths = list(range(num_sets))
-    paths = list(range(13))
-    num_sets = len(paths)
+    # paths = list(range(2))
+    paths = list(range(parameters['num_sets']))
+
     train_data, val_data, test_data = split_dataset(train=0.8, val=0.1, target_param=parameters['target_param'],
                                                     paths=paths)
-    print(
-        f'Dataset created with {len(train_data)} training examples, {len(val_data)} val examples, and {len(test_data)} test examples')
+
+    print(f'Dataset created with {len(train_data)} training examples, {len(val_data)} val examples, and {len(test_data)} test examples')
 
     # Create Dataloaders
-    test_loader = DataLoader(test_data, shuffle=False, batch_size=256)
+    test_loader = DataLoader(test_data, shuffle=True, num_workers=8, batch_size=1024)
 
     inference = InferenceEngine(
         model=model,
         parameters=parameters,
         test_loader=test_loader,
+        experiment_name=experiment_name
     )
 
     inference.infer()
 
 
-def load_model(experiment_name):
+def load_model(model_loc):
     """
     Load a model based on a specific experiment name
     Will return the best_model and the parameters_path
     :param experiment_name:
     :return:
     """
-    folder = Path(f'/media/sam/data/work/stars/configurations/saved_models/{experiment_name}')
-    # state_dict_path = Path(f'/media/sam/data/work/stars/configurations/saved_models/{experiment_name}/state_dicts/best_model.pt')
+    folder = Path(model_loc)
     state_dict_path = folder.joinpath('state_dicts/best_model.pt')
     parameters_path = folder.joinpath('parameters.pt')
     state_dict = torch.load(state_dict_path)
@@ -92,8 +95,9 @@ class InferenceEngine(object):
         #Output folder
         self.root_dir = Path('/media/sam/data/work/stars/configurations')
         self.folder = self.root_dir.joinpath(f'saved_models/{parameters["name"]}')
-        self.sample_output_folder = self.folder.joinpath('sample_outputs/inference_outputs')
-        check_exists(self.folder, self.sample_output_folder)
+        self.inference_output_folder = self.folder.joinpath('sample_outputs/inference_outputs')
+        # check_exists(self.folder, self.sample_output_folder)
+        check_exists(self.inference_output_folder)
 
         # METRICS
         self.metrics = {}
@@ -103,7 +107,7 @@ class InferenceEngine(object):
         if experiment_name:
             self.comet = True
             self.experiment = Experiment(project_name=experiment_name)
-            self.experiment.log_parameters(self.hyper_params)
+            self.experiment.log_parameters(parameters)
         else:
             self.comet = False
 
@@ -149,11 +153,13 @@ class InferenceEngine(object):
                         self.metrics[label].update(prediction_selection, target_selection)
                         i += 2
 
+                    self.create_sample_outputs(predictions, target_correct, number=inputs.shape[0], round=j)
+
                     ### Print a certain number of output samples for the val set
-                    if not printed:
-                        print("SAMPLE MODEL OUTPUTS FROM VAL SET:")
-                        self.create_sample_outputs(predictions, target_correct, number=100)
-                        printed = True
+                    # if not printed:
+                    #     print("SAMPLE MODEL OUTPUTS FROM VAL SET:")
+                    #     self.create_sample_outputs(predictions, target_correct, number=inputs.shape[0])
+                    #     printed = True
 
                 epoch_loss = total_loss / (j + 1)
                 epoch_smape = total_smape / (j + 1)
@@ -225,7 +231,24 @@ class InferenceEngine(object):
 
         return dict_denom
 
-    def create_sample_outputs(self, predictions, targets, number=50):
+    def create_sample_outputs(self, predictions, targets, round, number=50):
+        # Prints sample outputs of all
+        pd.set_option('display.max_columns', None)
+        print(predictions.shape, targets.shape)
+        full_table = torch.concat((predictions, targets), dim=1)
+        full_table = np.round(full_table.cpu().numpy(), decimals=4)
+
+        column_labels = []
+        for prefix in ["prediction", "target"]:
+            new_labels = [f"{prefix}_{label}" for label in self.output_labels]
+            column_labels = [*column_labels, *new_labels]
+
+        df = pd.DataFrame(full_table, columns=column_labels)
+        csv_path = self.inference_output_folder.joinpath(f'target_outputs_full_sample_{round}.csv')
+        df.to_csv(csv_path)
+        print(df)
+
+    def create_sample_outputs_old(self, predictions, targets, round, number=50):
         # Prints sample outputs of all
         pd.set_option('display.max_columns', None)
         table = []
@@ -238,13 +261,19 @@ class InferenceEngine(object):
             indices.append(f'prediction {i}')
             indices.append(f'target {i}')
 
-
         df = pd.DataFrame(table, columns=self.output_labels, index=indices)
-        csv_path = self.sample_output_folder.joinpath(f'target_outputs_sample.csv')
+        csv_path = self.inference_output_folder.joinpath(f'target_outputs_sample_{round}.csv')
         df.to_csv(csv_path)
         if self.comet:
             self.experiment.log_table(csv_path, tabular_data=table, headers=self.output_labels)
         print(df)
+
+    def comet_log_torchmetrics(self, label, results):
+
+        # List of metrics is the losses included in the metric collection
+        list_of_metrics = [m for m, _ in self.metrics[label].items()]
+        for metric in list_of_metrics:
+            self.experiment.log_metric(name=f'{label}_{metric}', value=results[metric])
 
 
 def check_exists(*folders):
@@ -253,6 +282,19 @@ def check_exists(*folders):
             folder.mkdir()
 
 
+def remove_module_from_state_dict(state_dict):
+    new_state_dict = {}
+    for key, _ in state_dict.items():
+        if "module" in key:
+            new_key = key[7:]
+        else:
+            new_key = key
+        new_state_dict[new_key] = state_dict[key]
+
+    return new_state_dict
+
 if __name__ == "__main__":
-    name = 'InceptionMultiNet_all_MASE_2023_02_21_1563'
-    main(name)
+    experiment_name = "Stars_Test_Set_runs"
+    options = ["temp", "log_g", "metal", "lumin", "alpha", "v_sin_i", "all"]
+    for option in options:
+        main(option, experiment_name=experiment_name)
