@@ -4,7 +4,7 @@ from torch.utils.data import random_split, DataLoader
 from trainer_gaia import Trainer
 import torch.nn as nn
 import torch.nn.functional as F
-from datasets import GaiaDataset, split_dataset, split_dataset_new
+from datasets import GaiaDataset, split_dataset, split_dataset_new, GaiaDataset2
 # from models.models_original import ConvolutionalNet
 import models
 import yaml
@@ -34,13 +34,23 @@ def main(config_loc, experiment_name=None, selection="train"):
     print(model)
 
     # Create datasets and dataloaders with given # of path files
-    paths = list(range(parameters['num_sets']))
-    num_sets = len(paths)
-    # train_data, val_data, test_data = split_dataset(train=0.8, val=0.1, target_param=parameters['target_param'], paths=paths)
-    train_data, val_data, test_data = split_dataset_new(val_test_len=15000, target_param=parameters['target_param'], paths=paths)
+    # paths = list(range(parameters['num_sets']))
+    # num_sets = len(paths)
+    # # train_data, val_data, test_data = split_dataset(train=0.8, val=0.1, target_param=parameters['target_param'], paths=paths)
+    # train_data, val_data, test_data = split_dataset_new(val_test_len=15000, target_param=parameters['target_param'], paths=paths)
 
-    print("Dataset has been split")
-    torch.save(test_data, f"/media/sam/data/work/stars/test_sets/{parameters['target_param']}_test_set")
+    train = np.load("/media/sam/data/work/stars/test_sets/11May/train_set.npy")
+    val = np.load("/media/sam/data/work/stars/test_sets/11May/val_set.npy")
+    test = np.load("/media/sam/data/work/stars/test_sets/11May/test_set.npy")
+    train_labels = np.load("/media/sam/data/work/stars/test_sets/11May/train_set_labels.npy")
+    val_labels = np.load("/media/sam/data/work/stars/test_sets/11May/val_set_labels.npy")
+    test_labels = np.load("/media/sam/data/work/stars/test_sets/11May/test_set_labels.npy")
+
+    # print("Dataset has been split")
+    # torch.save(test_data, f"/media/sam/data/work/stars/test_sets/{parameters['target_param']}_test_set")
+    train_data = GaiaDataset2(dataset=train, dataset_labels=train_labels)
+    val_data = GaiaDataset2(dataset=val, dataset_labels=val_labels)
+    test_data = GaiaDataset2(dataset=test, dataset_labels=test_labels)
 
     print(f'Dataset created with {len(train_data)} training examples, {len(val_data)} val examples, and {len(test_data)} test examples')
 
@@ -52,7 +62,7 @@ def main(config_loc, experiment_name=None, selection="train"):
     trainer = Trainer(
         model=model,
         parameters=parameters,
-        num_sets=num_sets,
+        # num_sets=num_sets,
         train_loader=train_loader,
         val_loader=val_loader,
         test_loader=test_loader,

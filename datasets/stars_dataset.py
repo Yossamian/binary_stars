@@ -94,6 +94,26 @@ class GaiaDataset(Dataset):
         return (self.spectra[idx], self.labels[idx])
 
 
+class GaiaDataset2(Dataset):
+
+    # load the dataset
+    def __init__(self, dataset, dataset_labels, no_reverse=False):
+
+        self.spectra = dataset
+        self.labels = dataset_labels
+
+        if no_reverse:
+            self.labels = dataset_labels[:, :, 0]
+
+    # number of rows in the dataset
+    def __len__(self):
+        return len(self.spectra)
+
+    # get a row at an index
+    def __getitem__(self, idx):
+        return self.spectra[idx], self.labels[idx]
+
+
 if __name__ == "__main__":
     opts = ['all', 'v_sin_i', 'metal', 'alpha', 'temp', 'log_g', 'lumin', 'none']
     for opt in opts:

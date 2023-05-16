@@ -20,7 +20,6 @@ class Trainer(object):
     def __init__(self,
                  model,
                  parameters,
-                 num_sets,
                  train_loader,
                  val_loader,
                  test_loader=None,
@@ -56,6 +55,8 @@ class Trainer(object):
 
         # Label parameters
         self.target_param = parameters["target_param"]
+        self.i1, self.i2 = self.get_data_indices()
+
         self.output_labels, self.param_labels = self.create_output_labels()
         dict_denom = self.create_dict_denom()
 
@@ -74,8 +75,7 @@ class Trainer(object):
             'num_epochs': self.epochs,
             'optimizer': parameters['optimizer'],
             'learning_rate': lr,
-            'weight_decay': wd,
-            'num_sets': num_sets
+            'weight_decay': wd
         }
 
         if experiment_name:
@@ -161,7 +161,7 @@ class Trainer(object):
                 for j, (inputs, targets) in enumerate(loader):
 
                     inputs = inputs.to(self.device)
-                    targets = targets.to(self.device)
+                    targets = targets[:, self.i1:self.i2].to(self.device)
 
                     predictions = self.model(inputs)
                     loss, target_correct = self.loss_func(predictions, targets)  # Loss function, and determine best target to evaluate for
@@ -241,7 +241,7 @@ class Trainer(object):
 
             for j, (inputs, targets) in enumerate(self.train_loader):
                 inputs = inputs.to(self.device)  # Bxfreq_range
-                targets = targets.to(self.device)  # Bx12x2
+                targets = targets[:, self.i1:self.i2].to(self.device)  # Bx12x2
 
                 # clear the gradients
                 self.optimizer.zero_grad()
@@ -341,6 +341,33 @@ class Trainer(object):
             dict_denom = {self.target_param: dict_denom[self.target_param]}
 
         return dict_denom
+
+    def get_data_indices(self):
+        # Based on the order of the dataset array object
+        # order = ["vsini", "metal", "alpha", "temp", "log_g", "lumin"]
+        if self.target_param == "all":
+            i1 = 0
+            i2 = 12
+        elif self.target_param == "vsini":
+            i1 = 0
+            i2 = 2
+        elif self.target_param == "metal":
+            i1 = 2
+            i2 = 4
+        elif self.target_param == "alpha":
+            i1 = 4
+            i2 = 6
+        elif self.target_param == "temp":
+            i1 = 6
+            i2 = 8
+        elif self.target_param == "log_g":
+            i1 = 8
+            i2 = 10
+        elif self.target_param == "lumin":
+            i1 = 10
+            i2 = 12
+
+        return i1, i2
 
 
 def check_exists(*folders):
