@@ -57,17 +57,17 @@ def multi_yaml():
     config_finish = config_loc.joinpath('config_finish')
     folder_check(config_loc, config_start, config_finish)
 
-    all_parameters = {'model': ['DenseNet', 'DenseNetMultiHead'],  # ['DenseNet', 'ConvolutionalNet', 'InceptionNet'],
+    all_parameters = {'model': ['DenseNet'],  # ['DenseNet', 'ConvolutionalNet', 'InceptionNet', 'DenseNetMultiHead'],
                       'optimizer': ['Adam'],
-                      'loss': ['MASE'],   #['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'], USE MASE!!!!!!!!!
+                      'loss': ['MSE'],   #['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'], USE MASE!!!!!!!!!
                       'lr': [.001],
                       'wd': [0],
-                      'epochs': [500],
+                      'epochs': [151],
                       'early_stopping': [20],
                       'sets_between_eval': [3],
-                      'optimizer_step': [400],
+                      'optimizer_step': [30],
                       'optimizer_gamma': [0.2],
-                      'target_param': ['all'], #['metal', 'alpha', 'temp'],
+                      'target_param': ['temp'], #['metal', 'alpha', , 'log_g', 'v_sin_i', 'alpha', 'lumin'],
                       'patch_size': [30],
                       'num_sets': [22]
                       }
