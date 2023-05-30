@@ -30,4 +30,4 @@ def multirun(experiment_name=None):
 
 
 if __name__ == "__main__":
-    multirun(experiment_name="stars_densenet_16may_testing")
+    multirun(experiment_name="stars_30May")
