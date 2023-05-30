@@ -111,17 +111,32 @@ class GaiaDataset2(Dataset):
 
     # get a row at an index
     def __getitem__(self, idx):
+        # SPECTRA IS shape Bx903
+        # Labels are shape Bx(No labels)x2
         return self.spectra[idx], self.labels[idx]
 
 
 if __name__ == "__main__":
-    opts = ['all', 'v_sin_i', 'metal', 'alpha', 'temp', 'log_g', 'lumin', 'none']
-    for opt in opts:
-        dataset = GaiaDataset(paths=range(15), target_param=opt)
-        a = dataset.spectra
-        lab = dataset.labels
-        print(f'************{opt}*************')
-        print(a.shape, lab.shape)
-        print(torch.min(lab))
-        print(torch.max(lab))
-        print()
+    # opts = ['all', 'v_sin_i', 'metal', 'alpha', 'temp', 'log_g', 'lumin', 'none']
+    # for opt in opts:
+    #     dataset = GaiaDataset2(paths=range(15), target_param=opt)
+    #     a = dataset.spectra
+    #     lab = dataset.labels
+    #     print(f'************{opt}*************')
+    #     print(a.shape, lab.shape)
+    #     print(torch.min(lab))
+    #     print(torch.max(lab))
+    #     print()
+    train = np.load("/media/sam/data/work/stars/test_sets/11May/train_set.npy")
+    val = np.load("/media/sam/data/work/stars/test_sets/11May/val_set.npy")
+    test = np.load("/media/sam/data/work/stars/test_sets/11May/test_set.npy")
+    train_labels = np.load("/media/sam/data/work/stars/test_sets/11May/train_set_labels.npy")
+    val_labels = np.load("/media/sam/data/work/stars/test_sets/11May/val_set_labels.npy")
+    test_labels = np.load("/media/sam/data/work/stars/test_sets/11May/test_set_labels.npy")
+
+    # print("Dataset has been split")
+    # torch.save(test_data, f"/media/sam/data/work/stars/test_sets/{parameters['target_param']}_test_set")
+    train_data = GaiaDataset2(dataset=train, dataset_labels=train_labels)
+    val_data = GaiaDataset2(dataset=val, dataset_labels=val_labels)
+    test_data = GaiaDataset2(dataset=test, dataset_labels=test_labels)
+    print("g")
