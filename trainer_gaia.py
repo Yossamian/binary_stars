@@ -24,7 +24,7 @@ class Trainer(object):
                  val_loader,
                  test_loader=None,
                  experiment_name="binary_stars",
-                 parallel=False):
+                 parallel=True):
 
         # Device management
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -69,19 +69,10 @@ class Trainer(object):
         self.sets_between_eval = parameters['sets_between_eval']
         self.early_stopping = parameters['early_stopping']
 
-        # Comet hyperparameters and logging
-        self.hyper_params = {
-            'name': parameters['name'],
-            'num_epochs': self.epochs,
-            'optimizer': parameters['optimizer'],
-            'learning_rate': lr,
-            'weight_decay': wd
-        }
-
         if experiment_name:
             self.comet = True
             self.experiment = Experiment(project_name=experiment_name)
-            self.experiment.log_parameters(self.hyper_params)
+            self.experiment.log_parameters(parameters)
         else:
             self.comet = False
 
@@ -141,12 +132,12 @@ class Trainer(object):
         self.model.eval()
         printed = False
 
-        if test == False:
-            set = "val"
-            loader = self.test_loader
-        else:
+        if test:
             set = "test"
             loader = self.test_loader
+        else:
+            set = "val"
+            loader = self.val_loader
 
         with self.experiment.test() if self.comet else nullcontext():
 
@@ -268,10 +259,6 @@ class Trainer(object):
             epoch_mape = total_mape / (j + 1)
             epoch_mase = total_mase / (j + 1)
             epoch_mae = total_mae / (j + 1)
-            # print("Train SMAPE: ", epoch_smape)
-            # print("Train MAPE: ", epoch_mape)
-            # print("Train MASE: ", epoch_mase)
-            # print("Train MAE: ", epoch_mae)
 
             if self.comet:
                 self.experiment.log_metric('train_loss', epoch_loss)

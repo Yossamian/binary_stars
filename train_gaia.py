@@ -1,7 +1,8 @@
 import numpy as np
 import torch
 from torch.utils.data import random_split, DataLoader
-from trainer_gaia import Trainer
+# from trainer_gaia import Trainer
+from trainer2023 import Trainer
 import torch.nn as nn
 import torch.nn.functional as F
 from datasets import GaiaDataset, split_dataset, split_dataset_new, GaiaDataset2
@@ -48,16 +49,19 @@ def main(config_loc, experiment_name=None, selection="train"):
 
     # print("Dataset has been split")
     # torch.save(test_data, f"/media/sam/data/work/stars/test_sets/{parameters['target_param']}_test_set")
-    train_data = GaiaDataset2(dataset=train, dataset_labels=train_labels)
-    val_data = GaiaDataset2(dataset=val, dataset_labels=val_labels)
-    test_data = GaiaDataset2(dataset=test, dataset_labels=test_labels)
+    train_data = GaiaDataset2(dataset=train, dataset_labels=train_labels, no_reverse=True)
+    val_data = GaiaDataset2(dataset=val, dataset_labels=val_labels, no_reverse=True)
+    test_data = GaiaDataset2(dataset=test, dataset_labels=test_labels, no_reverse=True)
 
     print(f'Dataset created with {len(train_data)} training examples, {len(val_data)} val examples, and {len(test_data)} test examples')
 
     # Create Dataloaders
-    train_loader = DataLoader(train_data, shuffle=False, num_workers=8, batch_size=1024)
-    val_loader = DataLoader(val_data, shuffle=True, num_workers=8, batch_size=1024)
-    test_loader = DataLoader(test_data, shuffle=True, num_workers=8, batch_size=1024)
+    train_loader = DataLoader(train_data, shuffle=True, batch_size=512, drop_last=True)
+    # train_loader = DataLoader(train_data, shuffle=False, num_workers=8, batch_size=64)
+    val_loader = DataLoader(val_data, shuffle=True, batch_size=256)
+    # val_loader = DataLoader(val_data, shuffle=True, num_workers=8, batch_size=64)
+    test_loader = DataLoader(test_data, shuffle=True, batch_size=256)
+    # test_loader = DataLoader(test_data, shuffle=True, num_workers=8, batch_size=64)
 
     trainer = Trainer(
         model=model,
@@ -81,9 +85,9 @@ def main(config_loc, experiment_name=None, selection="train"):
 if __name__ == "__main__":
 
     root_config = Path('/media/sam/data/work/stars/configurations/config_loc')
-    config_loc = next(root_config.joinpath('config_start').iterdir())
+    # config_loc = next(root_config.joinpath('config_start').iterdir())
 
     # main(config_loc, experiment_name=None)
 
-    config_loc = "/media/sam/data/work/stars/configurations/config_loc/config_finish/DenseNet_alpha_MSE_2023_04_10_2230.yaml"
-    main(config_loc, experiment_name="Gaia_inference", selection="test")
+    config_loc = "/media/sam/data/work/stars/configurations/saved_models/DenseNet_temp_BootlegMSE_2023_05_29_1279/" + "config.yaml"
+    main(config_loc, experiment_name=None, selection="test")
