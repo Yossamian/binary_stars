@@ -59,15 +59,15 @@ def multi_yaml():
 
     all_parameters = {'model': ['DenseNet'],  # ['DenseNet', 'ConvolutionalNet', 'InceptionNet', 'DenseNetMultiHead'],
                       'optimizer': ['Adam'],
-                      'loss': ['MSE'],   #['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'], USE MASE!!!!!!!!!
+                      'loss': ['BootlegMSE'],   #['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'], USE MASE!!!!!!!!!
                       'lr': [.001],
                       'wd': [0],
-                      'epochs': [151],
-                      'early_stopping': [20],
+                      'epochs': [200],
+                      'early_stopping': [100],
                       'sets_between_eval': [3],
-                      'optimizer_step': [30],
+                      'optimizer_step': [50],
                       'optimizer_gamma': [0.2],
-                      'target_param': ['temp'], #['metal', 'alpha', , 'log_g', 'v_sin_i', 'alpha', 'lumin'],
+                      'target_param': ['temp', 'metal', 'alpha', 'log_g', 'v_sin_i', 'lumin'],  # 'temp', 'metal', 'alpha', 'log_g', 'v_sin_i', 'lumin'
                       'patch_size': [30],
                       'num_sets': [22]
                       }

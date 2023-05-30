@@ -9,7 +9,7 @@ def get_pd(choice, file_num=4, multi=False):
     """
     Returns the pandas df of results (first 1024 of them) from the test set
     """
-    option_dict = {'temp': "DenseNet_temp_MSE_2023_04_11_1019",
+    option_dict1 = {'temp': "DenseNet_temp_MSE_2023_04_11_1019",
                    "log_g": "DenseNet_log_g_MSE_2023_04_10_2320",
                    "metal": "DenseNet_metal_MSE_2023_04_10_2024",
                    "alpha": "DenseNet_alpha_MSE_2023_04_10_2230",
@@ -18,10 +18,19 @@ def get_pd(choice, file_num=4, multi=False):
                    "all": "DenseNet_all_MASE_2023_04_12_1331"
                    }
 
+    option_dict2 = {'temp': "DenseNet_temp_BootlegMSE_2023_05_29_1279",
+                    "log_g": "DenseNet_log_g_BootlegMSE_2023_05_29_1283",
+                    "metal": "DenseNet_metal_BootlegMSE_2023_05_29_1407",
+                    "alpha": "DenseNet_alpha_BootlegMSE_2023_05_29_2963",
+                    "vsini": "DenseNet_vsini_BootlegMSE_2023_05_29_1091",
+                    "lumin": "DenseNet_lumin_BootlegMSE_2023_05_29_1160",
+                    "all": "DenseNet_all_MASE_2023_04_12_1331"
+                    }
+
     if multi:
         model_name = "DenseNet_all_MASE_2023_04_12_1331"
     else:
-        model_name = option_dict[choice]
+        model_name = option_dict2[choice]
 
     loc = f"/media/sam/data/work/stars/configurations/saved_models/{model_name}/sample_outputs/inference_outputs/target_outputs_full_sample_{file_num}.csv"
 
@@ -281,10 +290,10 @@ def create_scatter_avraham_full(num=150, multi=False, combined=False, file_num=0
 # for var in ["temp", "log_g", "metal", "alpha", "vsini", "lumin"]:
 #     create_scatter_avraham(var=var, num=150, multi=True, combined=True)
 
-for a in [True, False]:
-    create_scatter_avraham_full(num=150, multi=a, combined=False, file_num=0)
+# for a in [True, False]:
+#     create_scatter_avraham_full(num=150, multi=a, combined=False, file_num=0)
 
-create_scatter_avraham_full(num=150, multi=False, combined=True, file_num=0)
+create_scatter_avraham_full(num=150, multi=False, combined=False, file_num=5)
 # create_scatter_1d("v_sin_i", 50, highlight_errors=False)
 # ds = get_pd("temp")
 # f = get_samples(ds, 500)
