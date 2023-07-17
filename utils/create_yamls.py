@@ -58,18 +58,24 @@ def multi_yaml():
     folder_check(config_loc, config_start, config_finish)
 
     all_parameters = {'model': ['DenseNet'],  # ['DenseNet', 'ConvolutionalNet', 'InceptionNet', 'DenseNetMultiHead'],
-                      'optimizer': ['Adam'],
+                      'optimizer': ['Adam'],  # 'Adam', 'SGD'
                       'loss': ['BootlegMSE'],   #['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'], USE MASE!!!!!!!!!
-                      'lr': [.001],
+                      'lr': [.01],
                       'wd': [0],
-                      'epochs': [200],
-                      'early_stopping': [100],
+                      'epochs': [50],
+                      'early_stopping': [50],
                       'sets_between_eval': [3],
-                      'optimizer_step': [50],
-                      'optimizer_gamma': [0.2],
-                      'target_param': ['temp', 'metal', 'alpha', 'log_g', 'v_sin_i', 'lumin'],  # 'temp', 'metal', 'alpha', 'log_g', 'v_sin_i', 'lumin'
+                      'optimizer_step': [150],
+                      'optimizer_gamma': [0.1],
+                      'target_param': ['temp', 'metal', 'alpha', 'log_g', 'vsini', 'lumin'],  # 'temp', 'metal', 'alpha', 'log_g', 'vsini', 'lumin'
                       'patch_size': [30],
-                      'num_sets': [22]
+                      'num_sets': [22],
+                      'momentum': [0.9],
+                      'normalize': ['range', 'z', None],  # range, z, None
+                      'reorder': ['target'],  # target, all, None
+                      'data_folder': ["/media/sam/data/work/stars/test_sets/17jul"]
+
+
                       }
 
     for combo in product(*all_parameters.values()):

@@ -18,12 +18,12 @@ def get_pd(choice, file_num=4, multi=False):
                    "all": "DenseNet_all_MASE_2023_04_12_1331"
                    }
 
-    option_dict2 = {'temp': "DenseNet_temp_BootlegMSE_2023_05_29_1279",
-                    "log_g": "DenseNet_log_g_BootlegMSE_2023_05_29_1283",
-                    "metal": "DenseNet_metal_BootlegMSE_2023_05_29_1407",
-                    "alpha": "DenseNet_alpha_BootlegMSE_2023_05_29_2963",
-                    "vsini": "DenseNet_vsini_BootlegMSE_2023_05_29_1091",
-                    "lumin": "DenseNet_lumin_BootlegMSE_2023_05_29_1160",
+    option_dict2 = {'temp': "DenseNet_temp_BootlegMSE_2023_05_30_2832",
+                    "log_g": "DenseNet_log_g_BootlegMSE_2023_05_30_861",
+                    "metal": "DenseNet_metal_BootlegMSE_2023_05_30_2997",
+                    "alpha": "DenseNet_alpha_BootlegMSE_2023_05_30_1234",
+                    "vsini": "DenseNet_vsini_BootlegMSE_2023_05_31_345",
+                    "lumin": "DenseNet_lumin_BootlegMSE_2023_05_30_1276",
                     "all": "DenseNet_all_MASE_2023_04_12_1331"
                     }
 
@@ -293,7 +293,7 @@ def create_scatter_avraham_full(num=150, multi=False, combined=False, file_num=0
 # for a in [True, False]:
 #     create_scatter_avraham_full(num=150, multi=a, combined=False, file_num=0)
 
-create_scatter_avraham_full(num=150, multi=False, combined=False, file_num=5)
+create_scatter_avraham_full(num=200, multi=False, combined=False, file_num=0)
 # create_scatter_1d("v_sin_i", 50, highlight_errors=False)
 # ds = get_pd("temp")
 # f = get_samples(ds, 500)
