@@ -49,6 +49,7 @@ class Trainer(object):
         self.optimizer = getattr(torch.optim, parameters['optimizer'])(model.parameters(),
                                                                        lr=parameters['lr'],
                                                                        weight_decay=parameters['wd'])
+
         self.scheduler = StepLR(self.optimizer, step_size=parameters['optimizer_step'], gamma=parameters['optimizer_gamma'])
 
         # Loss function
