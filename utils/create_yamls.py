@@ -10,9 +10,10 @@ def create_yaml(parameters, folder):
     model = parameters['model']
     loss = parameters['loss']
     target = parameters['target_param']
+    hub_delta = str(parameters['huber_delta']).replace(".", "")
 
     today = date.today().strftime('%Y_%m_%d')
-    name = f'{model}_{target}_{loss}_{today}_{randint(0,3000)}'
+    name = f'{model}_{target}_{loss}_{hub_delta}_{today}_{randint(0,100000)}'
     parameters['name'] = name
 
     file_name = folder.joinpath(f'{name}.yaml')
@@ -59,23 +60,22 @@ def multi_yaml():
 
     all_parameters = {'model': ['DenseNet'],  # ['DenseNet', 'ConvolutionalNet', 'InceptionNet', 'DenseNetMultiHead'],
                       'optimizer': ['Adam'],  # 'Adam', 'SGD'
-                      'loss': ['BootlegMSE'],   #['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'MASE', 'MAE'], USE MASE!!!!!!!!!
-                      'lr': [.01],
-                      'wd': [0],
-                      'epochs': [50],
-                      'early_stopping': [50],
-                      'sets_between_eval': [3],
-                      'optimizer_step': [150],
+                      'loss': ['Huber'],   #['MSE', 'MAPE_adjusted', 'SMAPE_adjusted', 'Huber', 'MSE', 'MASE', 'MAE'], USE MASE!!!!!!!!!
+                      'lr': [.001, .0005],
+                      'wd': [0, 0.001, 0.1],
+                      'epochs': [100],
+                      'early_stopping': [25],
+                      'sets_between_eval': [2],
+                      'optimizer_step': [100],
                       'optimizer_gamma': [0.1],
-                      'target_param': ['temp', 'metal', 'alpha', 'log_g', 'vsini', 'lumin'],  # 'temp', 'metal', 'alpha', 'log_g', 'vsini', 'lumin'
+                      'target_param': ['log_g'], # 'lumin', 'temp', 'metal', 'vsini', 'alpha', 'log_g'
                       'patch_size': [30],
                       'num_sets': [22],
                       'momentum': [0.9],
-                      'normalize': ['range', 'z', None],  # range, z, None
+                      'normalize': [None],  # range, z, None
                       'reorder': ['target'],  # target, all, None
-                      'data_folder': ["/media/sam/data/work/stars/test_sets/17jul"]
-
-
+                      'data_folder': ["/media/sam/data/work/stars/test_sets/06_aug_b"],
+                      'huber_delta': [0.3, 1.2]
                       }
 
     for combo in product(*all_parameters.values()):

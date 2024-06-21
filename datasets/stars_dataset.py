@@ -1,8 +1,6 @@
 import numpy as np
 import torch
 from torch.utils.data import Dataset, DataLoader, random_split
-from torch.utils.data.dataloader_experimental import DataLoader2
-from torchvision import transforms, utils
 from torch.utils.data import random_split
 from pathlib import Path
 
@@ -15,17 +13,12 @@ class GaiaDataset(Dataset):
         self.spectra = dataset
         self.labels = dataset_labels
 
-        # if no_reverse:
-        #     self.labels = dataset_labels[:, :, 0]
-
-    # number of rows in the dataset
     def __len__(self):
         return len(self.spectra)
 
-    # get a row at an index
     def __getitem__(self, idx):
         # SPECTRA IS shape (903,) -> Bx903
-        # Labels are shape (12,) -> Bx12 if no_reverse=True, (12, 2) Bx12x2 if no_reverse=False
+        # Labels are shape (16,) -> Bx16
         return self.spectra[idx], self.labels[idx]
 
 

@@ -1,0 +1,2101 @@
+/media/sam/data/work/stars/code/venv/bin/python /media/sam/data/work/stars/code/binary_stars/train_gaia.py
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_alpha_Huber_008_2024_02_11_54985/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.08
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_alpha_Huber_008_2024_02_11_54985
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param alpha
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/69884b8cfeb049799c162c4738d3a71b
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+alpha test losses: {'MAE': tensor(0.1746, device='cuda:0'), 'MAPE': tensor(17446.3652, device='cuda:0'), 'MSE': tensor(0.0479, device='cuda:0'), 'RangeL': tensor(0.4365, device='cuda:0'), 'SMAPE': tensor(1.1838, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.011245757341384888
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_lumin_Huber_02_2024_02_11_87944/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.2
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_lumin_Huber_02_2024_02_11_87944
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param lumin
+wd 0.1
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/69884b8cfeb049799c162c4738d3a71b
+COMET INFO:   Metrics:
+COMET INFO:     test_alpha_MAE    : 0.17461282014846802
+COMET INFO:     test_alpha_MAPE   : 17446.365234375
+COMET INFO:     test_alpha_MSE    : 0.04788130149245262
+COMET INFO:     test_alpha_RangeL : 0.4365321099758148
+COMET INFO:     test_alpha_SMAPE  : 1.1837670803070068
+COMET INFO:     test_test_loss    : 0.011245757341384888
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 0.08
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_alpha_Huber_008_2024_02_11_54985
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : alpha
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.67 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/bcaaf23223934d77bac8291e99414313
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+lumin test losses: {'MAE': tensor(0.2946, device='cuda:0'), 'MAPE': tensor(0.0275, device='cuda:0'), 'MSE': tensor(0.1345, device='cuda:0'), 'RangeL': tensor(0.3199, device='cuda:0'), 'SMAPE': tensor(0.0275, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.04170128330588341
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_alpha_Huber_032_2024_02_11_3130/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.32
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_alpha_Huber_032_2024_02_11_3130
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param alpha
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/bcaaf23223934d77bac8291e99414313
+COMET INFO:   Metrics:
+COMET INFO:     test_lumin_MAE    : 0.2945607006549835
+COMET INFO:     test_lumin_MAPE   : 0.027489831671118736
+COMET INFO:     test_lumin_MSE    : 0.134515181183815
+COMET INFO:     test_lumin_RangeL : 0.31985005736351013
+COMET INFO:     test_lumin_SMAPE  : 0.027483738958835602
+COMET INFO:     test_test_loss    : 0.04170128330588341
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 0.2
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_lumin_Huber_02_2024_02_11_87944
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : lumin
+COMET INFO:     wd                : 0.1
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.67 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/34df4133ee274c93a96b1f744fe22ab2
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+alpha test losses: {'MAE': tensor(0.1776, device='cuda:0'), 'MAPE': tensor(17834.7578, device='cuda:0'), 'MSE': tensor(0.0473, device='cuda:0'), 'RangeL': tensor(0.4441, device='cuda:0'), 'SMAPE': tensor(1.1442, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.02271905541419983
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_alpha_Huber_032_2024_02_11_79654/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.32
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_alpha_Huber_032_2024_02_11_79654
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param alpha
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/34df4133ee274c93a96b1f744fe22ab2
+COMET INFO:   Metrics:
+COMET INFO:     test_alpha_MAE    : 0.17762185633182526
+COMET INFO:     test_alpha_MAPE   : 17834.7578125
+COMET INFO:     test_alpha_MSE    : 0.047347068786621094
+COMET INFO:     test_alpha_RangeL : 0.44405460357666016
+COMET INFO:     test_alpha_SMAPE  : 1.1442290544509888
+COMET INFO:     test_test_loss    : 0.02271905541419983
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 0.32
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_alpha_Huber_032_2024_02_11_3130
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : alpha
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.67 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/3715ff9e94774a9abffc7b13ff02a3cb
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+alpha test losses: {'MAE': tensor(0.1739, device='cuda:0'), 'MAPE': tensor(18163.5391, device='cuda:0'), 'MSE': tensor(0.0456, device='cuda:0'), 'RangeL': tensor(0.4349, device='cuda:0'), 'SMAPE': tensor(1.1148, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.021937429904937744
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_vsini_Huber_1_2024_02_11_98818/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_vsini_Huber_1_2024_02_11_98818
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param vsini
+wd 0.1
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/3715ff9e94774a9abffc7b13ff02a3cb
+COMET INFO:   Metrics:
+COMET INFO:     test_alpha_MAE    : 0.17394231259822845
+COMET INFO:     test_alpha_MAPE   : 18163.5390625
+COMET INFO:     test_alpha_MSE    : 0.045571062713861465
+COMET INFO:     test_alpha_RangeL : 0.43485575914382935
+COMET INFO:     test_alpha_SMAPE  : 1.114789605140686
+COMET INFO:     test_test_loss    : 0.021937429904937744
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 0.32
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_alpha_Huber_032_2024_02_11_79654
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : alpha
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/28770cce3d4a445d84c40d03af5a826e
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+vsini test losses: {'MAE': tensor(1.7997, device='cuda:0'), 'MAPE': tensor(18795.3105, device='cuda:0'), 'MSE': tensor(4.9295, device='cuda:0'), 'RangeL': tensor(0.3599, device='cuda:0'), 'SMAPE': tensor(0.4746, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 1.3525649309158325
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_vsini_Huber_4_2024_02_11_67805/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 4
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_vsini_Huber_4_2024_02_11_67805
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param vsini
+wd 0.1
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/28770cce3d4a445d84c40d03af5a826e
+COMET INFO:   Metrics:
+COMET INFO:     test_test_loss    : 1.3525649309158325
+COMET INFO:     test_vsini_MAE    : 1.7996615171432495
+COMET INFO:     test_vsini_MAPE   : 18795.310546875
+COMET INFO:     test_vsini_MSE    : 4.929549694061279
+COMET INFO:     test_vsini_RangeL : 0.35993248224258423
+COMET INFO:     test_vsini_SMAPE  : 0.474572092294693
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_vsini_Huber_1_2024_02_11_98818
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : vsini
+COMET INFO:     wd                : 0.1
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/bc33d1144872455aad4f7a302051887b
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+vsini test losses: {'MAE': tensor(1.7743, device='cuda:0'), 'MAPE': tensor(19873.9590, device='cuda:0'), 'MSE': tensor(4.6789, device='cuda:0'), 'RangeL': tensor(0.3549, device='cuda:0'), 'SMAPE': tensor(0.4673, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 2.3113808631896973
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_log_g_Huber_03_2024_02_11_30697/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.3
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_log_g_Huber_03_2024_02_11_30697
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param log_g
+wd 0
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/bc33d1144872455aad4f7a302051887b
+COMET INFO:   Metrics:
+COMET INFO:     test_test_loss    : 2.3113808631896973
+COMET INFO:     test_vsini_MAE    : 1.7742633819580078
+COMET INFO:     test_vsini_MAPE   : 19873.958984375
+COMET INFO:     test_vsini_MSE    : 4.678885459899902
+COMET INFO:     test_vsini_RangeL : 0.35485273599624634
+COMET INFO:     test_vsini_SMAPE  : 0.46728622913360596
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 4
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_vsini_Huber_4_2024_02_11_67805
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : vsini
+COMET INFO:     wd                : 0.1
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/5a6208081d304037b443bccc7c5092ac
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+log_g test losses: {'MAE': tensor(0.1787, device='cuda:0'), 'MAPE': tensor(0.0383, device='cuda:0'), 'MSE': tensor(0.0928, device='cuda:0'), 'RangeL': tensor(0.1191, device='cuda:0'), 'SMAPE': tensor(0.0379, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.029105624184012413
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_log_g_Huber_03_2024_02_11_4260/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.3
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_log_g_Huber_03_2024_02_11_4260
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param log_g
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/5a6208081d304037b443bccc7c5092ac
+COMET INFO:   Metrics:
+COMET INFO:     test_log_g_MAE    : 0.1787087470293045
+COMET INFO:     test_log_g_MAPE   : 0.03829042986035347
+COMET INFO:     test_log_g_MSE    : 0.0927550196647644
+COMET INFO:     test_log_g_RangeL : 0.1191391572356224
+COMET INFO:     test_log_g_SMAPE  : 0.03786269575357437
+COMET INFO:     test_test_loss    : 0.029105624184012413
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 0.3
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_log_g_Huber_03_2024_02_11_30697
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : log_g
+COMET INFO:     wd                : 0
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/ff7c929757b64122b5fe382f53c7b3e0
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+log_g test losses: {'MAE': tensor(0.2285, device='cuda:0'), 'MAPE': tensor(0.0503, device='cuda:0'), 'MSE': tensor(0.1238, device='cuda:0'), 'RangeL': tensor(0.1523, device='cuda:0'), 'SMAPE': tensor(0.0491, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.03964387625455856
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_lumin_Huber_1_2024_02_11_19581/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_lumin_Huber_1_2024_02_11_19581
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param lumin
+wd 0.1
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/ff7c929757b64122b5fe382f53c7b3e0
+COMET INFO:   Metrics:
+COMET INFO:     test_log_g_MAE    : 0.2285163551568985
+COMET INFO:     test_log_g_MAPE   : 0.050263453274965286
+COMET INFO:     test_log_g_MSE    : 0.1238097995519638
+COMET INFO:     test_log_g_RangeL : 0.15234416723251343
+COMET INFO:     test_log_g_SMAPE  : 0.049144793301820755
+COMET INFO:     test_test_loss    : 0.03964387625455856
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 0.3
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_log_g_Huber_03_2024_02_11_4260
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : log_g
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/b288ba1687094cd9983dbf113549cf04
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+lumin test losses: {'MAE': tensor(0.2534, device='cuda:0'), 'MAPE': tensor(0.0237, device='cuda:0'), 'MSE': tensor(0.1036, device='cuda:0'), 'RangeL': tensor(0.2752, device='cuda:0'), 'SMAPE': tensor(0.0237, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.05180773138999939
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_metal_Huber_04_2024_02_11_23002/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.4
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_metal_Huber_04_2024_02_11_23002
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param metal
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/b288ba1687094cd9983dbf113549cf04
+COMET INFO:   Metrics:
+COMET INFO:     test_lumin_MAE    : 0.25340548157691956
+COMET INFO:     test_lumin_MAPE   : 0.023715270683169365
+COMET INFO:     test_lumin_MSE    : 0.10363311320543289
+COMET INFO:     test_lumin_RangeL : 0.27516138553619385
+COMET INFO:     test_lumin_SMAPE  : 0.023693546652793884
+COMET INFO:     test_test_loss    : 0.05180773138999939
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_lumin_Huber_1_2024_02_11_19581
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : lumin
+COMET INFO:     wd                : 0.1
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/e92801b870b44123b66ffbaa8b20853e
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+metal test losses: {'MAE': tensor(0.1874, device='cuda:0'), 'MAPE': tensor(45371.4727, device='cuda:0'), 'MSE': tensor(0.0592, device='cuda:0'), 'RangeL': tensor(0.3748, device='cuda:0'), 'SMAPE': tensor(0.7693, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.028824524953961372
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_temp_Huber_1200_2024_02_11_36382/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1200
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_temp_Huber_1200_2024_02_11_36382
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param temp
+wd 0
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/e92801b870b44123b66ffbaa8b20853e
+COMET INFO:   Metrics:
+COMET INFO:     test_metal_MAE    : 0.1873844563961029
+COMET INFO:     test_metal_MAPE   : 45371.47265625
+COMET INFO:     test_metal_MSE    : 0.059150923043489456
+COMET INFO:     test_metal_RangeL : 0.3747689127922058
+COMET INFO:     test_metal_SMAPE  : 0.7693328261375427
+COMET INFO:     test_test_loss    : 0.028824524953961372
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 0.4
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_metal_Huber_04_2024_02_11_23002
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : metal
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/68e03ac53f734d94a28e55041e58d280
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+temp test losses: {'MAE': tensor(240.0152, device='cuda:0'), 'MAPE': tensor(0.0507, device='cuda:0'), 'MSE': tensor(141719.2500, device='cuda:0'), 'RangeL': tensor(0.1600, device='cuda:0'), 'SMAPE': tensor(0.0497, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 69349.765625
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_log_g_Huber_12_2024_02_11_43195/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1.2
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_log_g_Huber_12_2024_02_11_43195
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param log_g
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/68e03ac53f734d94a28e55041e58d280
+COMET INFO:   Metrics:
+COMET INFO:     test_temp_MAE    : 240.01522827148438
+COMET INFO:     test_temp_MAPE   : 0.050692107528448105
+COMET INFO:     test_temp_MSE    : 141719.25
+COMET INFO:     test_temp_RangeL : 0.1600101739168167
+COMET INFO:     test_temp_SMAPE  : 0.04972310736775398
+COMET INFO:     test_test_loss   : 69349.765625
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1200
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_temp_Huber_1200_2024_02_11_36382
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : temp
+COMET INFO:     wd                : 0
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/d9f02aa7f9c943099fac34f5633efd98
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+log_g test losses: {'MAE': tensor(0.2452, device='cuda:0'), 'MAPE': tensor(0.0550, device='cuda:0'), 'MSE': tensor(0.1295, device='cuda:0'), 'RangeL': tensor(0.1634, device='cuda:0'), 'SMAPE': tensor(0.0533, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.06401883810758591
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_temp_Huber_300_2024_02_11_88053/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 300
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_temp_Huber_300_2024_02_11_88053
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param temp
+wd 0.1
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/d9f02aa7f9c943099fac34f5633efd98
+COMET INFO:   Metrics:
+COMET INFO:     test_log_g_MAE    : 0.2451515942811966
+COMET INFO:     test_log_g_MAPE   : 0.05496373772621155
+COMET INFO:     test_log_g_MSE    : 0.12947283685207367
+COMET INFO:     test_log_g_RangeL : 0.16343438625335693
+COMET INFO:     test_log_g_SMAPE  : 0.0532858707010746
+COMET INFO:     test_test_loss    : 0.06401883810758591
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1.2
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_log_g_Huber_12_2024_02_11_43195
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : log_g
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/5056bcffa1ef4251bf5a8456b61d06cc
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+temp test losses: {'MAE': tensor(233.6976, device='cuda:0'), 'MAPE': tensor(0.0493, device='cuda:0'), 'MSE': tensor(147301.6875, device='cuda:0'), 'RangeL': tensor(0.1558, device='cuda:0'), 'SMAPE': tensor(0.0484, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 42291.65234375
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_vsini_Huber_1_2024_02_11_26132/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_vsini_Huber_1_2024_02_11_26132
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param vsini
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/5056bcffa1ef4251bf5a8456b61d06cc
+COMET INFO:   Metrics:
+COMET INFO:     test_temp_MAE    : 233.69760131835938
+COMET INFO:     test_temp_MAPE   : 0.04934470355510712
+COMET INFO:     test_temp_MSE    : 147301.6875
+COMET INFO:     test_temp_RangeL : 0.15579837560653687
+COMET INFO:     test_temp_SMAPE  : 0.04835372045636177
+COMET INFO:     test_test_loss   : 42291.65234375
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 300
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_temp_Huber_300_2024_02_11_88053
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : temp
+COMET INFO:     wd                : 0.1
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/1274e7a185cc4310a0d5ca0044374ccb
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+vsini test losses: {'MAE': tensor(1.6214, device='cuda:0'), 'MAPE': tensor(17656.4180, device='cuda:0'), 'MSE': tensor(4.3299, device='cuda:0'), 'RangeL': tensor(0.3243, device='cuda:0'), 'SMAPE': tensor(0.4399, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 1.1932761669158936
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_lumin_Huber_1_2024_02_11_88606/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_lumin_Huber_1_2024_02_11_88606
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param lumin
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/1274e7a185cc4310a0d5ca0044374ccb
+COMET INFO:   Metrics:
+COMET INFO:     test_test_loss    : 1.1932761669158936
+COMET INFO:     test_vsini_MAE    : 1.621399164199829
+COMET INFO:     test_vsini_MAPE   : 17656.41796875
+COMET INFO:     test_vsini_MSE    : 4.329861640930176
+COMET INFO:     test_vsini_RangeL : 0.32427990436553955
+COMET INFO:     test_vsini_SMAPE  : 0.4399370551109314
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_vsini_Huber_1_2024_02_11_26132
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : vsini
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/7f1f0ee0b5ea42c8af86ca4fa09b3169
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+lumin test losses: {'MAE': tensor(0.1397, device='cuda:0'), 'MAPE': tensor(0.0132, device='cuda:0'), 'MSE': tensor(0.0389, device='cuda:0'), 'RangeL': tensor(0.1517, device='cuda:0'), 'SMAPE': tensor(0.0132, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.019446130841970444
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_vsini_Huber_4_2024_02_11_93503/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 4
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_vsini_Huber_4_2024_02_11_93503
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param vsini
+wd 0
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/7f1f0ee0b5ea42c8af86ca4fa09b3169
+COMET INFO:   Metrics:
+COMET INFO:     test_lumin_MAE    : 0.13970449566841125
+COMET INFO:     test_lumin_MAPE   : 0.013228442519903183
+COMET INFO:     test_lumin_MSE    : 0.03894314542412758
+COMET INFO:     test_lumin_RangeL : 0.15169869363307953
+COMET INFO:     test_lumin_SMAPE  : 0.013153321109712124
+COMET INFO:     test_test_loss    : 0.019446130841970444
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_lumin_Huber_1_2024_02_11_88606
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : lumin
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/bc5f16e9a3da49b2b64b9caea4a4a5f4
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+vsini test losses: {'MAE': tensor(1.7620, device='cuda:0'), 'MAPE': tensor(17160.5996, device='cuda:0'), 'MSE': tensor(5.1814, device='cuda:0'), 'RangeL': tensor(0.3524, device='cuda:0'), 'SMAPE': tensor(0.4830, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 2.5049407482147217
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_temp_Huber_1200_2024_02_11_51226/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1200
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_temp_Huber_1200_2024_02_11_51226
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param temp
+wd 0
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/bc5f16e9a3da49b2b64b9caea4a4a5f4
+COMET INFO:   Metrics:
+COMET INFO:     test_test_loss    : 2.5049407482147217
+COMET INFO:     test_vsini_MAE    : 1.7619751691818237
+COMET INFO:     test_vsini_MAPE   : 17160.599609375
+COMET INFO:     test_vsini_MSE    : 5.18142557144165
+COMET INFO:     test_vsini_RangeL : 0.352395236492157
+COMET INFO:     test_vsini_SMAPE  : 0.48302507400512695
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 4
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_vsini_Huber_4_2024_02_11_93503
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : vsini
+COMET INFO:     wd                : 0
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/eff0a768501244ac9200cd938c8cbc37
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+temp test losses: {'MAE': tensor(243.0694, device='cuda:0'), 'MAPE': tensor(0.0513, device='cuda:0'), 'MSE': tensor(141354.1719, device='cuda:0'), 'RangeL': tensor(0.1620, device='cuda:0'), 'SMAPE': tensor(0.0503, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 69310.7578125
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_log_g_Huber_12_2024_02_11_81816/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1.2
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_log_g_Huber_12_2024_02_11_81816
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param log_g
+wd 0.1
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/eff0a768501244ac9200cd938c8cbc37
+COMET INFO:   Metrics:
+COMET INFO:     test_temp_MAE    : 243.06944274902344
+COMET INFO:     test_temp_MAPE   : 0.05132170021533966
+COMET INFO:     test_temp_MSE    : 141354.171875
+COMET INFO:     test_temp_RangeL : 0.16204629838466644
+COMET INFO:     test_temp_SMAPE  : 0.0503019243478775
+COMET INFO:     test_test_loss   : 69310.7578125
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1200
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_temp_Huber_1200_2024_02_11_51226
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : temp
+COMET INFO:     wd                : 0
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/b7543a44f48d4ed3b79b1f8c45053a2e
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+log_g test losses: {'MAE': tensor(0.4803, device='cuda:0'), 'MAPE': tensor(0.1073, device='cuda:0'), 'MSE': tensor(0.3707, device='cuda:0'), 'RangeL': tensor(0.3202, device='cuda:0'), 'SMAPE': tensor(0.1068, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.18265792727470398
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_alpha_Huber_032_2024_02_11_88615/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.32
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_alpha_Huber_032_2024_02_11_88615
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param alpha
+wd 0.1
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/b7543a44f48d4ed3b79b1f8c45053a2e
+COMET INFO:   Metrics:
+COMET INFO:     test_log_g_MAE    : 0.48032838106155396
+COMET INFO:     test_log_g_MAPE   : 0.10725286602973938
+COMET INFO:     test_log_g_MSE    : 0.3707216680049896
+COMET INFO:     test_log_g_RangeL : 0.3202187418937683
+COMET INFO:     test_log_g_SMAPE  : 0.10679487138986588
+COMET INFO:     test_test_loss    : 0.18265792727470398
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1.2
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_log_g_Huber_12_2024_02_11_81816
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : log_g
+COMET INFO:     wd                : 0.1
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/d68b58d5c8b34f428408f96741dc269e
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+alpha test losses: {'MAE': tensor(0.1915, device='cuda:0'), 'MAPE': tensor(14538.7080, device='cuda:0'), 'MSE': tensor(0.0518, device='cuda:0'), 'RangeL': tensor(0.4787, device='cuda:0'), 'SMAPE': tensor(1.2557, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.024999627843499184
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_vsini_Huber_1_2024_02_11_71242/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_vsini_Huber_1_2024_02_11_71242
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param vsini
+wd 0
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/d68b58d5c8b34f428408f96741dc269e
+COMET INFO:   Metrics:
+COMET INFO:     test_alpha_MAE    : 0.1914759874343872
+COMET INFO:     test_alpha_MAPE   : 14538.7080078125
+COMET INFO:     test_alpha_MSE    : 0.05179663375020027
+COMET INFO:     test_alpha_RangeL : 0.47868990898132324
+COMET INFO:     test_alpha_SMAPE  : 1.2557092905044556
+COMET INFO:     test_test_loss    : 0.024999627843499184
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 0.32
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_alpha_Huber_032_2024_02_11_88615
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : alpha
+COMET INFO:     wd                : 0.1
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.95 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/0f7d85eca6a84968b974037e79a5c184
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+vsini test losses: {'MAE': tensor(1.7213, device='cuda:0'), 'MAPE': tensor(17654.2734, device='cuda:0'), 'MSE': tensor(5.1342, device='cuda:0'), 'RangeL': tensor(0.3443, device='cuda:0'), 'SMAPE': tensor(0.4695, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 1.2940890789031982
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_temp_Huber_1200_2024_02_11_82019/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1200
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_temp_Huber_1200_2024_02_11_82019
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param temp
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/0f7d85eca6a84968b974037e79a5c184
+COMET INFO:   Metrics:
+COMET INFO:     test_test_loss    : 1.2940890789031982
+COMET INFO:     test_vsini_MAE    : 1.72134530544281
+COMET INFO:     test_vsini_MAPE   : 17654.2734375
+COMET INFO:     test_vsini_MSE    : 5.1342315673828125
+COMET INFO:     test_vsini_RangeL : 0.3442690968513489
+COMET INFO:     test_vsini_SMAPE  : 0.46948349475860596
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_vsini_Huber_1_2024_02_11_71242
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : vsini
+COMET INFO:     wd                : 0
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/0058be91e8b140ebbe678c985256a325
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+temp test losses: {'MAE': tensor(245.4847, device='cuda:0'), 'MAPE': tensor(0.0518, device='cuda:0'), 'MSE': tensor(143890.3438, device='cuda:0'), 'RangeL': tensor(0.1637, device='cuda:0'), 'SMAPE': tensor(0.0508, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 70547.59375
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_log_g_Huber_12_2024_02_11_47701/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1.2
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_log_g_Huber_12_2024_02_11_47701
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param log_g
+wd 0
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/0058be91e8b140ebbe678c985256a325
+COMET INFO:   Metrics:
+COMET INFO:     test_temp_MAE    : 245.4846649169922
+COMET INFO:     test_temp_MAPE   : 0.05181854963302612
+COMET INFO:     test_temp_MSE    : 143890.34375
+COMET INFO:     test_temp_RangeL : 0.16365645825862885
+COMET INFO:     test_temp_SMAPE  : 0.0508103221654892
+COMET INFO:     test_test_loss   : 70547.59375
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1200
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_temp_Huber_1200_2024_02_11_82019
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : temp
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/355391c5f0bd4f59bb02ce0bfdb15717
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+log_g test losses: {'MAE': tensor(0.1857, device='cuda:0'), 'MAPE': tensor(0.0400, device='cuda:0'), 'MSE': tensor(0.0930, device='cuda:0'), 'RangeL': tensor(0.1238, device='cuda:0'), 'SMAPE': tensor(0.0394, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.045831263065338135
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_log_g_Huber_12_2024_02_11_37885/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1.2
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_log_g_Huber_12_2024_02_11_37885
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param log_g
+wd 0.1
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/355391c5f0bd4f59bb02ce0bfdb15717
+COMET INFO:   Metrics:
+COMET INFO:     test_log_g_MAE    : 0.18570423126220703
+COMET INFO:     test_log_g_MAPE   : 0.03998921066522598
+COMET INFO:     test_log_g_MSE    : 0.093013696372509
+COMET INFO:     test_log_g_RangeL : 0.12380284070968628
+COMET INFO:     test_log_g_SMAPE  : 0.039375003427267075
+COMET INFO:     test_test_loss    : 0.045831263065338135
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1.2
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_log_g_Huber_12_2024_02_11_47701
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : log_g
+COMET INFO:     wd                : 0
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/3d5dc4bab55849a8b487f33eb45e41e4
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+log_g test losses: {'MAE': tensor(0.4676, device='cuda:0'), 'MAPE': tensor(0.1028, device='cuda:0'), 'MSE': tensor(0.3508, device='cuda:0'), 'RangeL': tensor(0.3117, device='cuda:0'), 'SMAPE': tensor(0.1049, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.17334698140621185
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_log_g_Huber_03_2024_02_11_12367/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.3
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_log_g_Huber_03_2024_02_11_12367
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param log_g
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/3d5dc4bab55849a8b487f33eb45e41e4
+COMET INFO:   Metrics:
+COMET INFO:     test_log_g_MAE    : 0.4675677716732025
+COMET INFO:     test_log_g_MAPE   : 0.10280102491378784
+COMET INFO:     test_log_g_MSE    : 0.35082852840423584
+COMET INFO:     test_log_g_RangeL : 0.3117119371891022
+COMET INFO:     test_log_g_SMAPE  : 0.10490786284208298
+COMET INFO:     test_test_loss    : 0.17334698140621185
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1.2
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_log_g_Huber_12_2024_02_11_37885
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : log_g
+COMET INFO:     wd                : 0.1
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/5c2bcdb4f2b548208a9cd60898582e59
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+log_g test losses: {'MAE': tensor(0.2635, device='cuda:0'), 'MAPE': tensor(0.0590, device='cuda:0'), 'MSE': tensor(0.1437, device='cuda:0'), 'RangeL': tensor(0.1757, device='cuda:0'), 'SMAPE': tensor(0.0576, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.04697934165596962
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_vsini_Huber_4_2024_02_11_86034/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 4
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_vsini_Huber_4_2024_02_11_86034
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param vsini
+wd 0
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/5c2bcdb4f2b548208a9cd60898582e59
+COMET INFO:   Metrics:
+COMET INFO:     test_log_g_MAE    : 0.2635398507118225
+COMET INFO:     test_log_g_MAPE   : 0.05900827795267105
+COMET INFO:     test_log_g_MSE    : 0.1437060832977295
+COMET INFO:     test_log_g_RangeL : 0.17569325864315033
+COMET INFO:     test_log_g_SMAPE  : 0.05762876942753792
+COMET INFO:     test_test_loss    : 0.04697934165596962
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 0.3
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.001
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_log_g_Huber_03_2024_02_11_12367
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : log_g
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/7acf4215898c4109a8096d0c4d6afd75
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+vsini test losses: {'MAE': tensor(1.7030, device='cuda:0'), 'MAPE': tensor(18699.4395, device='cuda:0'), 'MSE': tensor(4.8302, device='cuda:0'), 'RangeL': tensor(0.3406, device='cuda:0'), 'SMAPE': tensor(0.4574, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 2.3483102321624756
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_vsini_Huber_4_2024_02_11_93946/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 4
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_vsini_Huber_4_2024_02_11_93946
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param vsini
+wd 0.1
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/7acf4215898c4109a8096d0c4d6afd75
+COMET INFO:   Metrics:
+COMET INFO:     test_test_loss    : 2.3483102321624756
+COMET INFO:     test_vsini_MAE    : 1.7030267715454102
+COMET INFO:     test_vsini_MAPE   : 18699.439453125
+COMET INFO:     test_vsini_MSE    : 4.830162048339844
+COMET INFO:     test_vsini_RangeL : 0.3406055271625519
+COMET INFO:     test_vsini_SMAPE  : 0.4574070870876312
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 4
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_vsini_Huber_4_2024_02_11_86034
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : vsini
+COMET INFO:     wd                : 0
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/b657de55502c47a3a607591405083387
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+vsini test losses: {'MAE': tensor(1.7401, device='cuda:0'), 'MAPE': tensor(19684.4082, device='cuda:0'), 'MSE': tensor(4.5144, device='cuda:0'), 'RangeL': tensor(0.3480, device='cuda:0'), 'SMAPE': tensor(0.4626, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 2.2340822219848633
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_temp_Huber_1200_2024_02_11_68856/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 1200
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_temp_Huber_1200_2024_02_11_68856
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param temp
+wd 0.001
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/b657de55502c47a3a607591405083387
+COMET INFO:   Metrics:
+COMET INFO:     test_test_loss    : 2.2340822219848633
+COMET INFO:     test_vsini_MAE    : 1.7400978803634644
+COMET INFO:     test_vsini_MAPE   : 19684.408203125
+COMET INFO:     test_vsini_MSE    : 4.5143585205078125
+COMET INFO:     test_vsini_RangeL : 0.3480195999145508
+COMET INFO:     test_vsini_SMAPE  : 0.46264466643333435
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 4
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_vsini_Huber_4_2024_02_11_93946
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : vsini
+COMET INFO:     wd                : 0.1
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/2c2a02ed9a61479d8e360e5935391b8e
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+temp test losses: {'MAE': tensor(248.7198, device='cuda:0'), 'MAPE': tensor(0.0522, device='cuda:0'), 'MSE': tensor(139987.5625, device='cuda:0'), 'RangeL': tensor(0.1658, device='cuda:0'), 'SMAPE': tensor(0.0515, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 69042.5234375
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_metal_Huber_04_2024_02_11_15415/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.4
+loss Huber
+lr 0.0005
+model DenseNet
+momentum 0.9
+name DenseNet_metal_Huber_04_2024_02_11_15415
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param metal
+wd 0
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/2c2a02ed9a61479d8e360e5935391b8e
+COMET INFO:   Metrics:
+COMET INFO:     test_temp_MAE    : 248.71975708007812
+COMET INFO:     test_temp_MAPE   : 0.05215385556221008
+COMET INFO:     test_temp_MSE    : 139987.5625
+COMET INFO:     test_temp_RangeL : 0.165813148021698
+COMET INFO:     test_temp_SMAPE  : 0.05151137709617615
+COMET INFO:     test_test_loss   : 69042.5234375
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 1200
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_temp_Huber_1200_2024_02_11_68856
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : temp
+COMET INFO:     wd                : 0.001
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/6fa4cbd225a94caf8260c0102f4b20f8
+
+****Beginning Testing****
+Testing on GPU:cuda:0
+metal test losses: {'MAE': tensor(0.1514, device='cuda:0'), 'MAPE': tensor(33483.2656, device='cuda:0'), 'MSE': tensor(0.0513, device='cuda:0'), 'RangeL': tensor(0.3028, device='cuda:0'), 'SMAPE': tensor(0.7448, device='cuda:0')}
+(30000, 2) (30000, 17)
+Test Loss: 0.02353290654718876
+Running main() for /media/sam/data/work/stars/configurations/saved_models/11FEB_stars_huber/DenseNet_metal_Huber_04_2024_02_11_78568/config.yaml
+PARAMETERS:
+data_folder /media/sam/data/work/stars/test_sets/06_aug_b
+early_stopping 25
+epochs 100
+huber_delta 0.4
+loss Huber
+lr 0.001
+model DenseNet
+momentum 0.9
+name DenseNet_metal_Huber_04_2024_02_11_78568
+normalize None
+num_sets 22
+optimizer Adam
+optimizer_gamma 0.1
+optimizer_step 100
+patch_size 30
+reorder target
+sets_between_eval 2
+target_param metal
+wd 0.1
+Number of parameters: 1538274
+Dataset created with 120000 training examples, 30000 val examples, and 30000 test examples
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------------------------------------------------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.com/yossamian/11feb-stars-huber/6fa4cbd225a94caf8260c0102f4b20f8
+COMET INFO:   Metrics:
+COMET INFO:     test_metal_MAE    : 0.1514037400484085
+COMET INFO:     test_metal_MAPE   : 33483.265625
+COMET INFO:     test_metal_MSE    : 0.05133320391178131
+COMET INFO:     test_metal_RangeL : 0.302807480096817
+COMET INFO:     test_metal_SMAPE  : 0.7447986602783203
+COMET INFO:     test_test_loss    : 0.02353290654718876
+COMET INFO:   Parameters:
+COMET INFO:     data_folder       : /media/sam/data/work/stars/test_sets/06_aug_b
+COMET INFO:     early_stopping    : 25
+COMET INFO:     epochs            : 100
+COMET INFO:     huber_delta       : 0.4
+COMET INFO:     loss              : Huber
+COMET INFO:     lr                : 0.0005
+COMET INFO:     model             : DenseNet
+COMET INFO:     momentum          : 0.9
+COMET INFO:     name              : DenseNet_metal_Huber_04_2024_02_11_15415
+COMET INFO:     normalize         : None
+COMET INFO:     num_sets          : 22
+COMET INFO:     optimizer         : Adam
+COMET INFO:     optimizer_gamma   : 0.1
+COMET INFO:     optimizer_step    : 100
+COMET INFO:     patch_size        : 30
+COMET INFO:     reorder           : target
+COMET INFO:     sets_between_eval : 2
+COMET INFO:     target_param      : metal
+COMET INFO:     wd                : 0
+COMET INFO:   Uploads:
+COMET INFO:     environment details      : 1
+COMET INFO:     filename                 : 1
+COMET INFO:     git metadata             : 1
+COMET INFO:     git-patch (uncompressed) : 1 (257.93 KB)
+COMET INFO:     installed packages       : 1
+COMET INFO:     os packages              : 1
+COMET INFO:     source_code              : 2 (13.66 KB)
+COMET INFO:
+COMET WARNING: To get all data logged automatically, import comet_ml before the following modules: torch.
+COMET INFO: Experiment is live on comet.com https://www.comet.com/yossamian/11feb-stars-huber/8eda34560216497eabf7bed44f9d1550
+
+****Beginning Testing****
+Testing on GPU:cuda:0
